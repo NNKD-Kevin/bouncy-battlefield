@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 		clear()
 	elif enemies_left == 0:
 		if Global.level==10:
-			get_tree().change_scene_to_file("res://scenes/Victory.tscn")
+			get_tree().change_scene_to_file("res://scenes/win.tscn")
 		Global.combat = false
 		Global.level += 1
 		Global.enemies=[]

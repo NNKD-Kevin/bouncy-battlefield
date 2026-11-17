@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="6_woh6y"]
 [ext_resource type="Texture2D" uid="uid://ct8nh7ot1fykm" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Coral Crab/CoralCrab.png" id="7_rx2gv"]
 [ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="8_doh3d"]
+[ext_resource type="AudioStream" uid="uid://cljgrf7oye82t" path="res://assets/Sounds/vic.wav" id="9_d70ak"]
+[ext_resource type="AudioStream" uid="uid://cmoq3jrt4tt3g" path="res://assets/Sounds/ending.wav" id="10_woh6y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejki1"]
 texture = ExtResource("2_yxbqr")
@@ -388,7 +390,7 @@ color = Color(0, 0, 0, 0)
 libraries/ = SubResource("AnimationLibrary_531e2")
 
 [node name="timer_d" type="Timer" parent="Background/ColorRect" unique_id=1211715604]
-wait_time = 2.1
+wait_time = 5.0
 one_shot = true
 
 [node name="raid" type="Label" parent="." unique_id=994536640]
@@ -407,7 +409,7 @@ text = "The raid weakens"
 libraries/ = SubResource("AnimationLibrary_rx2gv")
 
 [node name="timer_r" type="Timer" parent="raid" unique_id=1335002729]
-wait_time = 4.1000000000000005
+wait_time = 4.5
 one_shot = true
 
 [node name="horde" type="Label" parent="." unique_id=801884216]
@@ -474,14 +476,14 @@ position = Vector2(585, 556.00006)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 autoplay = "default"
-frame_progress = 0.91294825
+frame_progress = 0.033164036
 
 [node name="chicken" type="AnimatedSprite2D" parent="Replay/animal/Animal" unique_id=1705206518]
 position = Vector2(793.00006, 558)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_iqkd1")
 autoplay = "default"
-frame_progress = 0.0059316275
+frame_progress = 0.12610795
 flip_h = true
 
 [node name="wolf" type="AnimatedSprite2D" parent="Replay/animal/Animal" unique_id=2127669242]
@@ -489,14 +491,14 @@ position = Vector2(344, 557.00006)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_eeo6d")
 autoplay = "default"
-frame_progress = 0.75887954
+frame_progress = 0.8790049
 
 [node name="crab" type="AnimatedSprite2D" parent="Replay/animal/Animal" unique_id=1121403894]
 position = Vector2(1014, 554.00006)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_jphpq")
 autoplay = "default"
-frame_progress = 0.18760234
+frame_progress = 0.3078874
 flip_h = true
 
 [node name="turtle" type="AnimatedSprite2D" parent="Replay/animal/Animal" unique_id=431269461]
@@ -504,7 +506,13 @@ position = Vector2(119.99999, 550.99994)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_sbur7")
 autoplay = "default"
-frame_progress = 0.44751453
+frame_progress = 0.56771487
+
+[node name="winner" type="AudioStreamPlayer2D" parent="." unique_id=350015656]
+stream = ExtResource("9_d70ak")
+
+[node name="ending" type="AudioStreamPlayer2D" parent="." unique_id=1735860618]
+stream = ExtResource("10_woh6y")
 
 [connection signal="timeout" from="Background/ColorRect/timer_d" to="." method="_on_timer_d_timeout"]
 [connection signal="timeout" from="raid/timer_r" to="." method="_on_timer_r_timeout"]

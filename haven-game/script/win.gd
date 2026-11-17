@@ -16,6 +16,8 @@ extends Node2D
 @onready var wolf: AnimatedSprite2D = $Replay/animal/Animal/wolf
 @onready var crab: AnimatedSprite2D = $Replay/animal/Animal/crab
 @onready var turtle: AnimatedSprite2D = $Replay/animal/Animal/turtle
+@onready var winner: AudioStreamPlayer2D = $winner
+@onready var ending: AudioStreamPlayer2D = $ending
 
 func _ready() -> void:
 	raid.visible = false
@@ -32,7 +34,7 @@ func _ready() -> void:
 	win.add_theme_color_override("font_color",Color.BLACK)
 	darken.play("darken")
 	timer_d.start()
-	
+	ending.play()
 
 func _on_timer_d_timeout() -> void:
 	raid.visible = true
@@ -48,7 +50,7 @@ func _on_timer_h_timeout() -> void:
 	win.visible = true
 	win_a.play("win")
 	timer_w.start()
-	
+	winner.play()
 func _on_timer_w_timeout() -> void:
 	replay_b.visible = true
 	chick.visible = true
