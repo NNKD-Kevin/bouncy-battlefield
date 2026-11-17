@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://n41cjim68x67"]
+
+[ext_resource type="Script" uid="uid://c4pneenc53wmh" path="res://script/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://fyt50b1pjpo6" path="res://assets/MMBG.png" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://cqwa2xlvhatxv" path="res://assets/Pixelout Personal Use Only.ttf" id="2_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://4h4cp2mwc4vm" path="res://assets/Sounds/calmbg.mp3" id="4_wu84c"]
+[ext_resource type="Script" uid="uid://dqskbmqfxhhto" path="res://script/audio_control.gd" id="5_8ln24"]
+[ext_resource type="Script" uid="uid://csy55321ac6l4" path="res://script/check_button.gd" id="6_rtw2f"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejki1"]
+texture = ExtResource("1_ekxnf")
+modulate_color = Color(0.5529412, 0.5529412, 0.5529412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejki1"]
+bg_color = Color(11.708, 11.92, 11.708, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0.18039216, 0.18431373, 0.18039216, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.48235294, 0.49411765, 0.48235294, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_iqkd1"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_eeo6d"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wu84c"]
+
+[node name="MainMenu" type="Control" unique_id=1746759157]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqqt6")
+
+[node name="Background" type="Panel" parent="." unique_id=306486973]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ejki1")
+
+[node name="Main Buttons" type="VBoxContainer" parent="." unique_id=1472731387]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -307.0
+offset_top = -418.0
+offset_right = 308.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Start" type="Button" parent="Main Buttons" unique_id=1439437415]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.007843138, 0.007843138, 0.007843138, 1)
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ejki1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "START GAME"
+
+[node name="Option" type="Button" parent="Main Buttons" unique_id=1379672516]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.007843138, 0.007843138, 0.007843138, 1)
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ejki1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="Main Buttons" unique_id=1033844133]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.007843138, 0.007843138, 0.007843138, 1)
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ejki1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "QUIT :("
+
+[node name="Label" type="Label" parent="." unique_id=1728884605]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.5
+offset_top = -274.0
+offset_right = 310.5
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 100
+text = "Bouncy Battlefield"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1622308759]
+stream = ExtResource("4_wu84c")
+autoplay = true
+bus = &"Music"
+
+[node name="Options" type="Panel" parent="." unique_id=1763092003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.32123
+offset_top = -134.0
+offset_right = 345.32123
+offset_bottom = 289.25
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Options" unique_id=728456855]
+layout_mode = 0
+offset_right = 689.3212
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Options" unique_id=146092081]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.16061
+offset_top = 151.375
+offset_right = 131.83939
+offset_bottom = 201.375
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.007843138, 0.007843138, 0.007843138, 1)
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ejki1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "Back
+"
+
+[node name="Volune" type="Label" parent="Options" unique_id=790225900]
+layout_mode = 0
+offset_left = 58.321228
+offset_top = 57.0
+offset_right = 263.64246
+offset_bottom = 135.0
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 40
+text = "Volume"
+
+[node name="AudioControl" type="HSlider" parent="Options" unique_id=822201205]
+layout_mode = 0
+offset_left = 61.321228
+offset_top = 118.0
+offset_right = 665.64246
+offset_bottom = 134.0
+theme_override_styles/slider = SubResource("StyleBoxLine_iqkd1")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_eeo6d")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_wu84c")
+max_value = 30.0
+step = 0.05
+value = 15.0
+script = ExtResource("5_8ln24")
+audio_bus_name = "Music"
+
+[node name="Fullscreen Control" type="CheckButton" parent="Options" unique_id=2091732936]
+layout_mode = 0
+offset_left = 60.321228
+offset_top = 152.0
+offset_right = 639.3212
+offset_bottom = 245.0
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 40
+text = "Fullscreen"
+script = ExtResource("6_rtw2f")
+
+[connection signal="pressed" from="Main Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main Buttons/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="Main Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Options/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
+[connection signal="toggled" from="Options/Fullscreen Control" to="Options/Fullscreen Control" method="_on_toggled"]
