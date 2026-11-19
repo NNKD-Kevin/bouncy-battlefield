@@ -16,6 +16,7 @@
 size = Vector2(42, 41)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vivr"]
+resource_local_to_scene = true
 shader = ExtResource("2_3c5tq")
 shader_parameter/flash_color = Color(0.97529536, 0.97529536, 0.97529536, 1)
 shader_parameter/flash_value = 0.0

@@ -54,6 +54,8 @@ func _ready() -> void:
 		"pig":grown=true
 func _process(delta: float) -> void:
 	health_bar.value=hp
+	if type=='wolf' and devour_ready:
+		hp-=delta*5
 
 func fire(type:String):
 	var bullet=null
