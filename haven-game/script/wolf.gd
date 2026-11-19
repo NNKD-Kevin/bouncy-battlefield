@@ -8,8 +8,9 @@ extends CharacterBody2D
 @onready var stun: Timer = $stun
 var moving=true
 @export var bounciness:=1.0
-const speed=350
+const speed=300
 var hp=100
+var max_hp=100
 var side=null
 var type='wolf'
 var devour_ready=false

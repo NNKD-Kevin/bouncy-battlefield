@@ -7,12 +7,14 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		velocity=velocity.bounce(collision.get_normal())*bounciness
 		var collider=collision.get_collider()
-		if collider is CharacterBody2D and collider.type!='bad_pig':
-			if collider.side=='good':
-				collider.hp-=10
+		if collider is CharacterBody2D:
+			if collider.side!=side:
+				collider.hp-=5
 				collider.moving=false
-				collider.stun.start()
-				collider.flash_animation.play('flash')
+				if collider.stun:
+					collider.stun.wait_time=2
+					collider.stun.start()
+					collider.flash_animation.play('flash')
 				queue_free()
 	if not Global.combat:
 		queue_free()

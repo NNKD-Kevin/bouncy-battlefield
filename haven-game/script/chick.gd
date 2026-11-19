@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var bounciness:=1.0
 const speed=350
 var hp=100
-var damage=20
+var max_hp=100
 var side=null
 var grown=false
 var egg_path=preload("res://scenes/egg.tscn")

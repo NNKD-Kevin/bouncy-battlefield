@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var bounciness:=1.0
 const speed=300
 var hp=100
+var max_hp=100
 var damage=15
 var type ='crab'
 var green_style := StyleBoxFlat.new()

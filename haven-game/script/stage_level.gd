@@ -1,15 +1,9 @@
 extends Node2D
-const SCENES = {
-	"crab": preload("res://scenes/crab.tscn"),
-	"chick": preload("res://scenes/chick.tscn"),
-	"wolf": preload("res://scenes/wolf.tscn"),
-	"turtle": preload("res://scenes/turtle.tscn")
-	}
-
+const ANIMAL=preload("res://scenes/animal.tscn")
 
 @onready var center_container: CenterContainer = $CenterContainer
 
-const ENEMY_TYPES = ["crab", "chick", "wolf", "turtle"]
+const ENEMY_TYPES = ["crab", "chick", "wolf", "turtle","pig"]
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var h_box_container: HBoxContainer = $Recruit/HBoxContainer
 
@@ -21,9 +15,11 @@ func _ready():
 	audio_stream_player_2d.play()
 	if center_container:
 		center_container.visible = false
-func spawn_type(type:String,side):
-	var node = SCENES[type].instantiate()
-	var is_good = side=='good'
+func spawn_type(type:String,side:String):
+	var node = ANIMAL.instantiate()
+	node.type=type
+	node.side=side
+	var is_good=side=='good'
 	var x_min = 300 if is_good else 700
 	node.position = Vector2(randi_range(x_min, x_min + 200), randi_range(150, 500))
 	node.add_to_group("animals" if is_good else "enemies")
@@ -42,14 +38,6 @@ func _process(_delta: float) -> void:
 
 	var animals_left = get_tree().get_nodes_in_group("animals").size()
 	var enemies_left = get_tree().get_nodes_in_group("enemies").size()
-	var animals = get_tree().get_nodes_in_group("animals")
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	print("animals: ", animals.size(), " enemies: ", enemies.size())
-	for e in enemies:
-		print("  enemy: ", e.name, " hp: ", e.hp)
-	print("animals: ", animals.size(), " enemies: ", enemies.size())
-	for e in enemies:
-		print("  enemy: ", e.name, " hp: ", e.hp)
 	if animals_left == 0:
 		Global.combat = false
 		get_tree().change_scene_to_file("res://scenes/Defeat.tscn")
@@ -62,7 +50,8 @@ func _process(_delta: float) -> void:
 		Global.enemies=[]
 		print(Global.level)
 		clear()
-		h_box_container.choose()
+		if Global.level<10:
+			h_box_container.choose()
 		
 
 func _input(event: InputEvent) -> void:

@@ -132,7 +132,7 @@ shader = ExtResource("2_y0cok")
 shader_parameter/flash_color = Color(0, 0, 0, 1)
 shader_parameter/flash_value = 0.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=269655125]
+[node name="CharacterBody2D2" type="CharacterBody2D" unique_id=269655125]
 script = ExtResource("1_tbw8y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2035674120]
@@ -143,7 +143,7 @@ shape = SubResource("RectangleShape2D_v5gy4")
 material = SubResource("ShaderMaterial_236rq")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1vivr")
-animation = &"chick"
+animation = &"chicken"
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1825155774]
 root_node = NodePath("../..")
@@ -162,7 +162,7 @@ value = 50.0
 wait_time = 20.0
 one_shot = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=472388212]
+[node name="cluck" type="AudioStreamPlayer2D" parent="." unique_id=472388212]
 material = SubResource("ShaderMaterial_6oku0")
 stream = ExtResource("5_0pupb")
 volume_db = 3.0

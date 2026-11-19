@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqhbieejv1rf0"]
 
-[ext_resource type="Script" path="res://scenes/animal.gd" id="1_g2brh"]
+[ext_resource type="Script" uid="uid://dc02hof57joj1" path="res://script/animal.gd" id="1_g2brh"]
 [ext_resource type="Texture2D" uid="uid://ct8nh7ot1fykm" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Coral Crab/CoralCrab.png" id="1_lj8jo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5gy4"]

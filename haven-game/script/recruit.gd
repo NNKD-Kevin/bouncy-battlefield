@@ -24,7 +24,7 @@ var index=0
 @onready var center_container: CenterContainer = $"../../CenterContainer"
 @onready var upcoming_sprite: HBoxContainer = $"../../Upcoming Enemy2/Upcoming_sprite"
 @onready var upcoming: Label = $"../../Upcoming Enemy2/Upcoming"
-const ENEMY_TYPES = ["crab", "chick", "wolf", "turtle"]
+const ENEMY_TYPES = ["crab", "chick", "wolf", "turtle","pig"]
 @onready var u_1: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U1/U1"
 @onready var u_2: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U2/U2"
 @onready var u_3: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U3/U3"
@@ -53,7 +53,7 @@ func choose():
 	choices=[]
 	index=0
 	for sprite in options:
-		var gacha=randi_range(1,4)
+		var gacha=randi_range(1,5)
 		if sprite:
 			if gacha==1:
 				sprite.play('Chicken')
@@ -71,6 +71,9 @@ func choose():
 				sprite.play('Wolf')
 				choices.append('wolf')
 				if descriptions[index][3]:descriptions[index][3].visible=true
+			elif gacha==5:
+				sprite.play("Pig")
+				choices.append('pig')
 		index+=1
 	for i in range(Global.level):
 		Global.enemies.append(ENEMY_TYPES.pick_random())
@@ -83,6 +86,8 @@ func choose():
 			upcomings[i].play("Turtle")
 		if Global.enemies[i]=='wolf':
 			upcomings[i].play("Wolf")
+		if Global.enemies[i]=='pig':
+			upcomings[i].play("Pig")
 		upcomings[i].visible=true
 func _ready():
 	for i in upcomings:

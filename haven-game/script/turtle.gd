@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var bounciness:=1.0
 const speed=50
 var hp=300
+var max_hp=100
 var damage=10
 var side=null
 var type='turtle'

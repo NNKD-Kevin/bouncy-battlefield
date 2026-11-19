@@ -12,8 +12,9 @@ func _physics_process(delta: float) -> void:
 				collider.hp-=10
 				collider.flash_animation.play('flash')
 				queue_free()
-			elif collider.side==side and collider.type!='chick':
+			elif collider.side==side:
 				collider.hp+=10
+				collider.hp=min(collider.hp,collider.max_hp)
 				queue_free()
 	if not Global.combat:
 		queue_free()
