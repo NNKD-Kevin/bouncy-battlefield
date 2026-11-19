@@ -1,29 +1,38 @@
 extends CharacterBody2D
-@export var bounciness:=1.0
-const speed=350
-var hp=100
-var damage=20
-var side='bad'
-var grown=false
-var egg_path=preload("res://scenes/bad_egg.tscn")
-var type='bad_chick'
+
 @onready var health_bar=$HealthBar
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
-@onready var grow_timer: Timer = $grow_timer
+@onready var devour_timer: Timer = $devour_timer
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var stun: Timer = $stun
 var moving=true
-
+@export var bounciness:=1.0
+const speed=350
+var hp=100
+var side=null
+var type='wolf'
+var devour_ready=false
 var started=false
+var green_style := StyleBoxFlat.new()
+var red_style := StyleBoxFlat.new()
+
 func _ready() -> void:
+	green_style.bg_color = Color.GREEN
+	red_style.bg_color = Color.RED
+	if is_in_group("enemies"):
+		side='bad'
+		health_bar.add_theme_stylebox_override("fill",red_style)
+	elif is_in_group("animals"):
+		side='good'
+		health_bar.add_theme_stylebox_override("fill",green_style)
 	health_bar.value=hp
-	animated_sprite_2d.play("chick")
-	randomize()
 	velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
-	grow_timer.start()
+	devour_timer.start()
 func _process(delta: float) -> void:
 	health_bar.value=hp
+	if devour_ready:
+		hp-=delta*5
 
 
 
@@ -32,28 +41,23 @@ func _physics_process(delta: float) -> void:
 	if collision and moving:
 		velocity=velocity.bounce(collision.get_normal())*bounciness
 		var collider=collision.get_collider()
-		if not (collider is CharacterBody2D) and grown:
-			fire()
-		
+		if collider is CharacterBody2D:
+			if collider.side!=side and devour_ready:
+				collider.queue_free()
+				devour_ready=false
+				devour_timer.start()
+				hp+=collider.hp
+				hp=min(100,hp)
 	if hp<=0:
-		Global.enemies.erase(self)
 		queue_free()
 	if velocity.x<0:
 		animated_sprite_2d.flip_h=true
 	else:
 		animated_sprite_2d.flip_h=false
 
-func fire():
-	var egg = egg_path.instantiate()
-	egg.global_position = $CollisionShape2D.global_position
-	egg.rotation = global_rotation
-	egg.velocity=velocity
-	get_parent().add_child(egg)
-	audio_stream_player_2d.play()
 
-func _on_grow_timer_timeout() -> void:
-	grown=true
-	animated_sprite_2d.play("chicken")
+func _on_devour_timer_timeout() -> void:
+	devour_ready=true
 	audio_stream_player_2d.play()
 
 

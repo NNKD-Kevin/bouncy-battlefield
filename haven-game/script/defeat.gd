@@ -34,7 +34,5 @@ func _on_timer_3_timeout() -> void:
 	button.visible = true
 	
 func _on_button_pressed() -> void:
+	Global.reset_run()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	Global.animals=[]
-	Global.level=1
-	Global.enemies=[]

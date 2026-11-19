@@ -1,18 +1,18 @@
 extends CharacterBody2D
 var bounciness=1.0
 var side=null
-
+var type='egg'
 func _physics_process(delta: float) -> void:
 	var collision=move_and_collide(velocity*delta)
 	if collision:
 		velocity=velocity.bounce(collision.get_normal())*bounciness
 		var collider=collision.get_collider()
-		if collider is CharacterBody2D and collider.type!='bad_chick':
-			if collider.side=='good':
-				collider.hp-=5
+		if collider is CharacterBody2D:
+			if collider.side!=side:
+				collider.hp-=10
 				collider.flash_animation.play('flash')
 				queue_free()
-			elif collider.side=='bad':
+			elif collider.side==side and collider.type!='chick':
 				collider.hp+=10
 				queue_free()
 	if not Global.combat:

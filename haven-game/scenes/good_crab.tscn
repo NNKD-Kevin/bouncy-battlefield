@@ -1,9 +1,68 @@
-[gd_scene format=3 uid="uid://cv35f4bujcmjq"]
+[gd_scene format=3 uid="uid://bxxpepglnyshr"]
 
-[ext_resource type="Script" uid="uid://dc02hof57joj1" path="res://script/good_crab.gd" id="1_352oc"]
 [ext_resource type="Shader" uid="uid://brqe8r3r2c8yq" path="res://assets/shader/damage.gdshader" id="2_asma4"]
 [ext_resource type="AudioStream" uid="uid://cwgoqls2w5bmv" path="res://assets/Sounds/punch.wav" id="3_236rq"]
 [ext_resource type="Texture2D" uid="uid://ct8nh7ot1fykm" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Coral Crab/CoralCrab.png" id="3_rdpqn"]
+
+[sub_resource type="GDScript" id="GDScript_352oc"]
+script/source = "extends CharacterBody2D
+@export var bounciness:=1.0
+const speed=300
+var hp=100
+var damage=20
+var side='good'
+var type='good_crab'
+@onready var health_bar=$HealthBar
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var cooldown: Timer = $cooldown
+@onready var stun: Timer = $stun
+var moving=true
+
+var ready_to_hit=true
+
+var started=false
+func _ready() -> void:
+	health_bar.value=hp
+	animated_sprite_2d.play(\"default\")
+	randomize()
+	velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
+func _process(delta: float) -> void:
+	health_bar.value=hp
+
+		 
+
+func _physics_process(delta: float) -> void:
+	var collision=move_and_collide(velocity*delta)
+	if collision and moving:
+		velocity=velocity.bounce(collision.get_normal())*bounciness
+		var collider=collision.get_collider()
+		if collider is CharacterBody2D:
+			if collider.side=='bad' and ready_to_hit:
+				collider.hp-=damage
+				animated_sprite_2d.play(\"attack\")
+				collider.flash_animation.play(\"flash\")
+				audio_stream_player_2d.play()
+				ready_to_hit=false
+				cooldown.start()
+				
+	if hp<=0:
+		queue_free()
+
+	
+
+func _on_animation_finished() -> void:
+		animated_sprite_2d.play(\"default\")
+
+
+func _on_cooldown_timeout() -> void:
+	ready_to_hit=true
+
+
+func _on_stun_timeout() -> void:
+	moving=true
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5gy4"]
 size = Vector2(42, 33)
@@ -99,7 +158,7 @@ bg_color = Color(0.07123137, 0.0712314, 0.07123133, 1)
 bg_color = Color(1.150325e-05, 0.6457821, 0.13244244, 1)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" unique_id=269655125]
-script = ExtResource("1_352oc")
+script = SubResource("GDScript_352oc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2035674120]
 position = Vector2(1, 6.5)

@@ -1,9 +1,68 @@
 [gd_scene format=3 uid="uid://djniw6sjj1c3h"]
 
-[ext_resource type="Script" uid="uid://b4ha3niod3ngv" path="res://script/good_wolf.gd" id="1_l1kpt"]
 [ext_resource type="Shader" uid="uid://brqe8r3r2c8yq" path="res://assets/shader/damage.gdshader" id="2_xex4f"]
 [ext_resource type="AudioStream" uid="uid://cu1yrcjmsmf14" path="res://assets/Sounds/wolf_howl.wav" id="4_vmteg"]
 [ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="4_xex4f"]
+
+[sub_resource type="GDScript" id="GDScript_l1kpt"]
+script/source = "extends CharacterBody2D
+@export var bounciness:=1.0
+const speed=350
+var hp=100
+var side='good'
+var type='good_wolf'
+@onready var health_bar=$HealthBar
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
+@onready var devour_timer: Timer = $devour_timer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var stun: Timer = $stun
+var moving=true
+var devour_ready=false
+var started=false
+
+func _ready() -> void:
+	health_bar.value=hp
+	randomize()
+	velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
+	devour_timer.start()
+func _process(delta: float) -> void:
+	health_bar.value=hp
+	if devour_ready:
+		hp-=delta*5
+
+
+
+func _physics_process(delta: float) -> void:
+	var collision=move_and_collide(velocity*delta)
+	if collision and moving:
+		velocity=velocity.bounce(collision.get_normal())*bounciness
+		var collider=collision.get_collider()
+		if collider is CharacterBody2D:
+			if collider.side=='bad' and devour_ready:
+				collider.queue_free()
+				Global.enemies.erase(collider)
+				devour_ready=false
+				devour_timer.start()
+				hp+=collider.hp
+				hp=min(100,hp)
+		
+	if hp<=0:
+		queue_free()
+	if velocity.x<0:
+		animated_sprite_2d.flip_h=true
+	else:
+		animated_sprite_2d.flip_h=false
+
+
+func _on_devour_timer_timeout() -> void:
+	devour_ready=true
+	audio_stream_player_2d.play()
+
+
+func _on_stun_timeout() -> void:
+	moving=true
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5gy4"]
 size = Vector2(45, 38)
@@ -99,7 +158,7 @@ shader_parameter/flash_color = Color(0, 0, 0, 1)
 shader_parameter/flash_value = 0.0
 
 [node name="CharacterBody2D2" type="CharacterBody2D" unique_id=269655125]
-script = ExtResource("1_l1kpt")
+script = SubResource("GDScript_l1kpt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2035674120]
 position = Vector2(-0.5, 4)

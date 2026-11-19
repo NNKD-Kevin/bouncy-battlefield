@@ -1,10 +1,74 @@
 [gd_scene format=3 uid="uid://bvasb4rfeaj3y"]
 
-[ext_resource type="Script" uid="uid://cexwcda0ox738" path="res://script/good_chick.gd" id="1_vn3id"]
 [ext_resource type="Shader" uid="uid://brqe8r3r2c8yq" path="res://assets/shader/damage.gdshader" id="2_c68sx"]
 [ext_resource type="Texture2D" uid="uid://ddhsm8tulf0rl" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Tiny Chick/TinyChick.png" id="4_vn3id"]
 [ext_resource type="Texture2D" uid="uid://c61x748ofga2c" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Clucking Chicken/CluckingChicken.png" id="5_bbpnm"]
 [ext_resource type="AudioStream" uid="uid://drbq15fvyxn0r" path="res://assets/Sounds/chicken_cluck.mp3" id="5_vn3id"]
+
+[sub_resource type="GDScript" id="GDScript_c68sx"]
+script/source = "extends CharacterBody2D
+@export var bounciness:=1.0
+const speed=350
+var hp=100
+var damage=20
+var side='good'
+var grown=false
+var egg_path=preload(\"res://scenes/good_egg.tscn\")
+var type='good_chick'
+@onready var health_bar=$HealthBar
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
+@onready var grow_timer: Timer = $grow_timer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var stun: Timer = $stun
+var moving=true
+
+
+
+var started=false
+func _ready() -> void:
+	health_bar.value=hp
+	animated_sprite_2d.play(\"chick\")
+	randomize()
+	velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
+	grow_timer.start()
+	
+func _process(delta: float) -> void:
+	health_bar.value=hp
+
+
+
+
+func _physics_process(delta: float) -> void:
+	var collision=move_and_collide(velocity*delta)
+	if collision and moving:
+		velocity=velocity.bounce(collision.get_normal())*bounciness
+		var collider=collision.get_collider()
+		if not (collider is CharacterBody2D) and grown:
+			fire()
+		
+	if hp<=0:
+		Global.animals.erase(self)
+		queue_free()
+	if velocity.x<0:
+		animated_sprite_2d.flip_h=true
+	else:
+		animated_sprite_2d.flip_h=false
+
+func fire():
+	var egg = egg_path.instantiate()
+	egg.global_position = $CollisionShape2D.global_position
+	egg.rotation = global_rotation
+	egg.velocity=velocity
+	get_parent().add_child(egg)
+	audio_stream_player_2d.play()
+
+
+func _on_grow_timer_timeout() -> void:
+	grown=true
+	animated_sprite_2d.play(\"chicken\")
+	audio_stream_player_2d.play()
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5gy4"]
 size = Vector2(42, 33)
@@ -128,7 +192,7 @@ bg_color = Color(0.07123137, 0.0712314, 0.07123133, 1)
 bg_color = Color(1.150325e-05, 0.6457821, 0.13244244, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=269655125]
-script = ExtResource("1_vn3id")
+script = SubResource("GDScript_c68sx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2035674120]
 position = Vector2(1, 6.5)

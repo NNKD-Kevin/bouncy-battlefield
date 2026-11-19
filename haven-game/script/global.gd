@@ -12,3 +12,9 @@ func _input(event: InputEvent) -> void:
 		Engine.time_scale =3.0
 	if Input.is_action_just_released("speedup"):
 		Engine.time_scale=1.0
+func reset_run():
+	animals=[]
+	enemies=[]
+	level=1
+	combat=false
+	ready_to_start=false

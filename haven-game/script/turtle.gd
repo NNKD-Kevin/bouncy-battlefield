@@ -3,8 +3,8 @@ extends CharacterBody2D
 const speed=50
 var hp=300
 var damage=10
-var side='bad'
-var type='bad_turtle'
+var side=null
+var type='turtle'
 @onready var health_bar=$HealthBar
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
@@ -12,14 +12,23 @@ var type='bad_turtle'
 @onready var stun: Timer = $stun
 var moving=true
 var ready_to_hit=true
-
 var started=false
+var green_style := StyleBoxFlat.new()
+var red_style := StyleBoxFlat.new()
+
 func _ready() -> void:
+	green_style.bg_color = Color.GREEN
+	red_style.bg_color = Color.RED
+	if is_in_group("enemies"):
+		side='bad'
+		health_bar.add_theme_stylebox_override("fill",red_style)
+	elif is_in_group("animals"):
+		side='good'
+		health_bar.add_theme_stylebox_override("fill",green_style)
 	health_bar.value=hp
 	velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
 func _process(delta: float) -> void:
 	health_bar.value=hp
-	randomize()
 	
 		 
 
@@ -29,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		velocity=velocity.bounce(collision.get_normal())*bounciness
 		var collider=collision.get_collider()
 		if collider is CharacterBody2D:
-			if collider.side=='good' and ready_to_hit:
+			if collider.side!=side and ready_to_hit:
 				collider.hp-=damage
 				health_bar.value=hp
 				animated_sprite_2d.play("attack")
@@ -37,7 +46,6 @@ func _physics_process(delta: float) -> void:
 				ready_to_hit=false
 				cooldown.start()
 	if hp<=0:
-		Global.enemies.erase(self)
 		queue_free()
 
 	

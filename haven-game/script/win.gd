@@ -60,4 +60,5 @@ func _on_timer_w_timeout() -> void:
 	wolf.visible = true
 
 func _on_replay_pressed() -> void:
+	Global.reset_run()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

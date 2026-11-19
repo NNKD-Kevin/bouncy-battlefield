@@ -1,19 +1,15 @@
 extends Node2D
 const SCENES = {
-	"good_crab": preload("res://scenes/good_crab.tscn"),
-	"good_chick": preload("res://scenes/good_chick.tscn"),
-	"good_wolf": preload("res://scenes/good_wolf.tscn"),
-	"good_turtle": preload("res://scenes/good_turtle.tscn"),
-	"bad_crab": preload("res://scenes/bad_crab.tscn"),
-	"bad_chick": preload("res://scenes/bad_chick.tscn"),
-	"bad_wolf": preload("res://scenes/bad_wolf.tscn"),
-	"bad_turtle": preload("res://scenes/bad_turtle.tscn")
+	"crab": preload("res://scenes/crab.tscn"),
+	"chick": preload("res://scenes/chick.tscn"),
+	"wolf": preload("res://scenes/wolf.tscn"),
+	"turtle": preload("res://scenes/turtle.tscn")
 	}
 
 
 @onready var center_container: CenterContainer = $CenterContainer
 
-const ENEMY_TYPES = ["bad_crab", "bad_chick", "bad_wolf", "bad_turtle"]
+const ENEMY_TYPES = ["crab", "chick", "wolf", "turtle"]
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var h_box_container: HBoxContainer = $Recruit/HBoxContainer
 
@@ -25,13 +21,13 @@ func _ready():
 	audio_stream_player_2d.play()
 	if center_container:
 		center_container.visible = false
-func spawn_type(type:String):
+func spawn_type(type:String,side):
 	var node = SCENES[type].instantiate()
-	var is_good = type.begins_with("good")
+	var is_good = side=='good'
 	var x_min = 300 if is_good else 700
 	node.position = Vector2(randi_range(x_min, x_min + 200), randi_range(150, 500))
 	node.add_to_group("animals" if is_good else "enemies")
-	get_parent().add_child(node)
+	add_child(node)
 func clear():
 	if not is_inside_tree():
 		return
@@ -46,7 +42,14 @@ func _process(_delta: float) -> void:
 
 	var animals_left = get_tree().get_nodes_in_group("animals").size()
 	var enemies_left = get_tree().get_nodes_in_group("enemies").size()
-
+	var animals = get_tree().get_nodes_in_group("animals")
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	print("animals: ", animals.size(), " enemies: ", enemies.size())
+	for e in enemies:
+		print("  enemy: ", e.name, " hp: ", e.hp)
+	print("animals: ", animals.size(), " enemies: ", enemies.size())
+	for e in enemies:
+		print("  enemy: ", e.name, " hp: ", e.hp)
 	if animals_left == 0:
 		Global.combat = false
 		get_tree().change_scene_to_file("res://scenes/Defeat.tscn")
@@ -66,8 +69,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start") and not Global.combat and Global.ready_to_start:
 		if center_container:
 			center_container.visible=false
-		for i in Global.enemies:
-			spawn_type(i)
+		for enemy in Global.enemies:
+			spawn_type(enemy,'bad')
 		for animal in Global.animals:
-			spawn_type(animal)
+			spawn_type(animal,'good')
 		Global.combat = true
