@@ -36,10 +36,16 @@ var index=0
 @onready var u_9: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U9/U9"
 @onready var u_10: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U10/U10"
 @onready var upcomings=[u_1,u_2,u_3,u_4,u_5,u_6,u_7,u_8,u_9,u_10]
-
+#buttons
+@onready var button: Button = $"../../Time speed/Button"
+@onready var button_2: Button = $"../../Time speed/Button2"
+@onready var button_3: Button = $"../../Time speed/Button3"
 
 var choices=[]
 func choose():
+	button.visible = false
+	button_2.visible = false
+	button_3.visible = false
 	h_box_container.visible = true
 	if upcoming_sprite:
 		upcoming_sprite.visible = true
