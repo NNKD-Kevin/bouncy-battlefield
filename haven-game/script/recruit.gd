@@ -4,22 +4,10 @@ extends HBoxContainer
 @onready var options = [$"Option1/AnimatedSprite2D", $Option2/AnimatedSprite2D, $Option3/AnimatedSprite2D]
 
 #Description
-@onready var chicken1: Label = $Option1/Description/Chicken
-@onready var crab1: Label = $"Option1/Description/Crab"
-@onready var wolf1: Label = $"Option1/Description/Wolf"
-@onready var turtle1: Label = $"Option1/Description/Turtle"
-@onready var description1=[chicken1,crab1,turtle1,wolf1]
-@onready var chicken2: Label = $Option2/Description/Chicken
-@onready var crab2: Label = $Option2/Description/Crab
-@onready var wolf2: Label = $Option2/Description/Wolf
-@onready var turtle2: Label = $Option2/Description/Turtle
-@onready var description2=[chicken2,crab2,turtle2,wolf2]
-@onready var chicken3: Label = $Option3/Description/Chicken
-@onready var crab3: Label = $Option3/Description/Crab
-@onready var wolf3: Label = $Option3/Description/Wolf
-@onready var turtle3: Label = $Option3/Description/Turtle
-@onready var description3=[chicken3,crab3,turtle3,wolf3]
-@onready var descriptions=[description1,description2,description3]
+@onready var description_1: Label = $Option1/Description1
+@onready var description_2: Label = $Option2/Description2
+@onready var description_3: Label = $Option3/Description3
+@onready var descriptions=[description_1,description_2,description_3]
 @onready var center_container: CenterContainer = $"../../CenterContainer"
 @onready var upcoming_sprite: HBoxContainer = $"../../Upcoming Enemy2/Upcoming_sprite"
 @onready var upcoming: Label = $"../../Upcoming Enemy2/Upcoming"
@@ -42,6 +30,7 @@ extends HBoxContainer
 var  cache=[]
 var choices=[]
 func choose():
+	cache=[]
 	button.visible = false
 	button_2.visible = false
 	button_3.visible = false
@@ -62,8 +51,11 @@ func choose():
 			cache.append(gacha)
 	for i in range(len(options)):
 		var a=cache[i]-1
-		options[i].play(AnimalData.ENEMY_TYPES[a])
-		choices.append(AnimalData.ENEMY_TYPES[a])
+		var animal=AnimalData.ENEMY_TYPES[a]
+		options[i].play(animal)
+		choices.append(animal)
+		descriptions[i].text=AnimalData.DESCRIPTIONS[animal]
+		descriptions[i].visible=true
 	for i in range(Global.level):
 		Global.enemies.append(AnimalData.ENEMY_TYPES.pick_random())
 	for i in range(Global.level):
@@ -81,8 +73,7 @@ func hideall():
 	if upcoming:
 		upcoming.visible = false
 	for description in descriptions:
-		for i in description:
-			i.hide()
+		description.hide()
 func _pick(i: int):
 	Global.animals.append(choices[i])
 	hideall()

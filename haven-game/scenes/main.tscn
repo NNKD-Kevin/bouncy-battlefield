@@ -1018,7 +1018,6 @@ theme_override_font_sizes/font_size = 80
 text = "Choose an animal!"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Recruit" unique_id=2060210887]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -1047,14 +1046,12 @@ scale = Vector2(1.6, 1.546)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"porcupine"
 
-[node name="Description" type="Node" parent="CanvasLayer/Recruit/HBoxContainer/Option1" unique_id=522973224]
-
-[node name="Chicken" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option1/Description" unique_id=1594253500]
-visible = false
-offset_left = 127.0
-offset_top = 286.0
-offset_right = 380.0
-offset_bottom = 491.0
+[node name="Description1" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option1" unique_id=1594253500]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 142.0
+offset_right = 268.0
+offset_bottom = 347.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "CHICKEN:
 HP: 100
@@ -1063,44 +1060,6 @@ chick then grow after 15s
 Bounce Edges: shoots egg which 
 deals 5 damage to enemy or 
 heals 10 HP to allies"
-
-[node name="Crab" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option1/Description" unique_id=1355037722]
-visible = false
-offset_left = 121.0
-offset_top = 278.0
-offset_right = 385.0
-offset_bottom = 379.0
-text = "CRAB:
-HP: 100
-Bounce enemies: Deal 20 damage 
-to them"
-
-[node name="Wolf" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option1/Description" unique_id=1730292845]
-visible = false
-offset_left = 123.0
-offset_top = 286.0
-offset_right = 384.0
-offset_bottom = 491.0
-text = "WOLF:
-HP: 100
-Ability: Gets hungry every 30s
-During hunger: Lose health every 
-second. 
-Bounce enemies: Devour
-them and gain their current HP if 
-is hungry"
-
-[node name="Turtle" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option1/Description" unique_id=1010673536]
-visible = false
-offset_left = 133.0
-offset_top = 306.0
-offset_right = 341.0
-offset_bottom = 433.0
-text = "Turtle:
-HP: 250
-Ability: Moves super slowly
-Bounce Enemies: Deal 
-10 damage on them"
 
 [node name="Option2" type="Button" parent="CanvasLayer/Recruit/HBoxContainer" unique_id=46177921]
 layout_mode = 2
@@ -1115,14 +1074,13 @@ scale = Vector2(1.6, 1.546)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"porcupine"
 
-[node name="Description" type="Node" parent="CanvasLayer/Recruit/HBoxContainer/Option2" unique_id=785970656]
-
-[node name="Chicken" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option2/Description" unique_id=1777556338]
-visible = false
-offset_left = 434.0
-offset_top = 283.0
-offset_right = 687.0
-offset_bottom = 488.0
+[node name="Description2" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option2" unique_id=1986092971]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 142.0
+offset_right = 268.0
+offset_bottom = 347.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "CHICKEN:
 HP: 100
 Ability: Start as a harmless 
@@ -1130,44 +1088,6 @@ chick then grow after 15s
 Bounce Edges: shoots egg which 
 deals 5 damage to enemy or 
 heals 10 HP to allies"
-
-[node name="Crab" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option2/Description" unique_id=238386412]
-visible = false
-offset_left = 428.0
-offset_top = 275.0
-offset_right = 753.0
-offset_bottom = 376.0
-text = "CRAB:
-HP: 100
-Bounce enemies: Deal 20 damage
- to them"
-
-[node name="Wolf" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option2/Description" unique_id=2116058121]
-visible = false
-offset_left = 430.0
-offset_top = 283.0
-offset_right = 691.0
-offset_bottom = 488.0
-text = "WOLF:
-HP: 100
-Ability: Gets hungry every 30s
-During hunger: Lose health every 
-second. 
-Bounce enemies: Devour
-them and gain their current HP if 
-is hungry"
-
-[node name="Turtle" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option2/Description" unique_id=1302726393]
-visible = false
-offset_left = 440.0
-offset_top = 303.0
-offset_right = 648.0
-offset_bottom = 430.0
-text = "Turtle:
-HP: 250
-Ability: Moves super slowly
-Bounce Enemies: Deal 
-10 damage on them"
 
 [node name="Option3" type="Button" parent="CanvasLayer/Recruit/HBoxContainer" unique_id=1170694630]
 layout_mode = 2
@@ -1182,14 +1102,13 @@ scale = Vector2(1.6, 1.546)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"pig"
 
-[node name="Description" type="Node" parent="CanvasLayer/Recruit/HBoxContainer/Option3" unique_id=173582155]
-
-[node name="Chicken" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option3/Description" unique_id=2070239563]
-visible = false
-offset_left = 734.0
-offset_top = 290.0
-offset_right = 987.0
-offset_bottom = 495.0
+[node name="Description3" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option3" unique_id=456167812]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 142.0
+offset_right = 268.0
+offset_bottom = 347.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "CHICKEN:
 HP: 100
 Ability: Start as a harmless 
@@ -1197,44 +1116,6 @@ chick then grow after 15s
 Bounce Edges: shoots egg which 
 deals 5 damage to enemy or 
 heals 10 HP to allies"
-
-[node name="Crab" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option3/Description" unique_id=1478753113]
-visible = false
-offset_left = 728.0
-offset_top = 282.0
-offset_right = 988.0
-offset_bottom = 383.0
-text = "CRAB:
-HP: 100
-Bounce enemies: Deal 20 damage
- to them"
-
-[node name="Wolf" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option3/Description" unique_id=449911850]
-visible = false
-offset_left = 730.0
-offset_top = 290.0
-offset_right = 991.0
-offset_bottom = 495.0
-text = "WOLF:
-HP: 100
-Ability: Gets hungry every 30s
-During hunger: Lose health every 
-second. 
-Bounce enemies: Devour
-them and gain their current HP if 
-is hungry"
-
-[node name="Turtle" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option3/Description" unique_id=690638462]
-visible = false
-offset_left = 740.0
-offset_top = 310.0
-offset_right = 948.0
-offset_bottom = 437.0
-text = "Turtle:
-HP: 250
-Ability: Moves super slowly
-Bounce Enemies: Deal 
-10 damage on them"
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=2099241847]
 offset_left = 578.00006
