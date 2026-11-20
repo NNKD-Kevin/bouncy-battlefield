@@ -34,6 +34,9 @@ var devour_ready=false
 var poo=preload("res://scenes/poo.tscn")
 const POO_SPEED = 0.0001
 
+#Porcupine
+var spike=preload("res://scenes/spike.tscn")
+const SPIKE_SPEED =150
 func _ready() -> void:
 	green_style.bg_color = Color.GREEN
 	red_style.bg_color = Color.RED
@@ -62,6 +65,17 @@ func _process(delta: float) -> void:
 		hp-=delta*5
 
 func fire(type:String):
+	if type=='porcupine':
+		for i in range(12):
+			var dir=Vector2.RIGHT.rotated(TAU/12*i)
+			var s=spike.instantiate()
+			s.velocity=dir*SPIKE_SPEED
+			s.rotation=dir.angle()
+			s.add_collision_exception_with(self)
+			add_collision_exception_with(s)
+			get_parent().add_child(s)
+			s.global_position=$CollisionShape2D.global_position
+		return
 	var bullet=null
 	if type=='chick':
 		bullet = egg.instantiate()
@@ -72,15 +86,11 @@ func fire(type:String):
 		bullet.velocity=velocity*POO_SPEED
 	bullet.add_collision_exception_with(self)
 	add_collision_exception_with(bullet)
-	if type!='porcupine':
-		bullet.side=side
-		get_parent().add_child(bullet)
-		bullet.global_position = $CollisionShape2D.global_position
-	else:
-		for i in range(12):
-			bullet.velocity=velocity.rotated(30*i)
-			get_parent().add_child(bullet)
-			bullet.global_position = $CollisionShape2D.global_position
+	bullet.side=side
+	bullet.rotation=global_rotation
+	bullet.global_position = $CollisionShape2D.global_position
+	get_parent().add_child(bullet)
+
 			
 	
 
@@ -112,6 +122,9 @@ func _physics_process(delta: float) -> void:
 					collider.queue_free()
 			'chick','pig':
 				if not (collider is CharacterBody2D) and grown:
+					fire(type)
+			'porcupine':
+				if is_enemy and ready_to_hit:
 					fire(type)
 
 
