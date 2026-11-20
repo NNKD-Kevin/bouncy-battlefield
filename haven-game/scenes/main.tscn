@@ -643,9 +643,6 @@ _data = {
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vivr"]
 bg_color = Color(0.70980394, 0.5921569, 0, 0.42745098)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrlf"]
-bg_color = Color(0, 0, 0, 0.5803922)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 10
@@ -735,6 +732,9 @@ corner_radius_bottom_left = 10
 shadow_color = Color(0, 0, 0, 1)
 shadow_size = 1
 shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrlf"]
+bg_color = Color(0, 0, 0, 0.5803922)
 
 [node name="Game" type="Node2D" unique_id=1046699917]
 script = ExtResource("1_tipki")

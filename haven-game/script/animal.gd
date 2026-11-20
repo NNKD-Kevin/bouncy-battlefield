@@ -26,7 +26,8 @@ var ready_to_hit=true
 var data:Dictionary
 var mouse_on =false
 var dragging=false
-
+var valid=false
+var initial_position=Vector2(0,0)
 #Chick
 var grown=false
 var egg=preload("res://scenes/egg.tscn")
@@ -63,8 +64,18 @@ func _input(event: InputEvent) -> void:
 		dragging=true
 	if Input.is_action_just_released('drag') and dragging and side=='good':
 		dragging=false
+		queue_redraw()
+		var map=AnimalData.MAPS[Global.current_map]
+		if map.rect.has_point(position):
+			valid=true
+		else:
+			valid=false
+			position=initial_position
 	if event.is_action_pressed("start") and not Global.combat and Global.ready_to_start:
 		health_bar.visible=true
+		if side=='good' and not valid:
+			var map=AnimalData.MAPS[Global.current_map]
+			position=Vector2(randi_range(map.x_min,map.x_max),randi_range(map.y_min,map.y_max))
 		if type=='crab':
 			velocity=Vector2.RIGHT.rotated(randi()%2*180)*speed
 		else:
@@ -82,6 +93,11 @@ func _process(delta: float) -> void:
 		hp-=delta*5
 	if dragging and Global.ready_to_start:
 		self.position=get_global_mouse_position()
+		queue_redraw()
+func _draw() -> void:
+	if dragging and Global.ready_to_start:
+		var r: Rect2 = AnimalData.MAPS[Global.current_map].rect
+		draw_rect(Rect2(to_local(r.position),r.size),Color.GREEN,false,3.0)
 
 func fire(type:String):
 	if type=='porcupine':
@@ -115,7 +131,7 @@ func fire(type:String):
 
 func _physics_process(delta: float) -> void:
 	if not Global.combat:
-		pass
+		return
 	if hp<=0:
 		queue_free()
 		return
@@ -133,7 +149,7 @@ func _physics_process(delta: float) -> void:
 		match type:
 			'crab','turtle':
 				if is_enemy and ready_to_hit:
-					collider.hp-=20 if type=='crab' else 10
+					collider.hp-=15 if type=='crab' else 10
 					if type=='crab':animation.play("crab_attack")
 					collider.flash_animation.play("flash")
 					slap.play()
