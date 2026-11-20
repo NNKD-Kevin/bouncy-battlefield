@@ -24,6 +24,8 @@ var side =null
 var moving=true
 var ready_to_hit=true
 var data:Dictionary
+var mouse_on =false
+var dragging=false
 
 #Chick
 var grown=false
@@ -36,10 +38,13 @@ const POO_SPEED = 0.0001
 
 #Porcupine
 var spike=preload("res://scenes/spike.tscn")
-const SPIKE_SPEED =150
+const SPIKE_SPEED =200
+
+
 func _ready() -> void:
 	green_style.bg_color = Color.GREEN
 	red_style.bg_color = Color.RED
+	health_bar.visible=false
 	side ='bad' if is_in_group("enemies") else "good"
 	data=AnimalData.ANIMALS[type]
 	max_hp=data.max_hp
@@ -49,25 +54,39 @@ func _ready() -> void:
 	health_bar.add_theme_stylebox_override("fill",red_style if side=='bad' else green_style)
 	speed=data.speed
 	animation.play(type)
-	if type=='crab':
-		velocity=Vector2.RIGHT.rotated(randi()%2*180)*speed
-	else:
-		velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
-	match type:
-		"chick":grow_timer.start()
-		"wolf":devour_timer.start()
-		"pig","porcupine":grown=true
+	if side=='bad':
+		health_bar.visible=true
+
+
+func _input(event: InputEvent) -> void:
+	if mouse_on and Input.is_action_just_pressed("drag") and side=='good':
+		dragging=true
+	if Input.is_action_just_released('drag') and dragging and side=='good':
+		dragging=false
+	if event.is_action_pressed("start") and not Global.combat and Global.ready_to_start:
+		health_bar.visible=true
+		if type=='crab':
+			velocity=Vector2.RIGHT.rotated(randi()%2*180)*speed
+		else:
+			velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
+		match type:
+			"chick":grow_timer.start()
+			"wolf":devour_timer.start()
+			"pig","porcupine":grown=true
+
 func _process(delta: float) -> void:
 	health_bar.value=hp
 	if type=='wolf' and devour_ready:
 		hp-=delta*5
 	if Global.sandstorm_on:
 		hp-=delta*5
+	if dragging and Global.ready_to_start:
+		self.position=get_global_mouse_position()
 
 func fire(type:String):
 	if type=='porcupine':
-		for i in range(12):
-			var dir=Vector2.RIGHT.rotated(TAU/12*i)
+		for i in range(15):
+			var dir=Vector2.RIGHT.rotated(TAU/15*i)
 			var s=spike.instantiate()
 			s.velocity=dir*SPIKE_SPEED
 			s.rotation=dir.angle()
@@ -95,11 +114,17 @@ func fire(type:String):
 	
 
 func _physics_process(delta: float) -> void:
+	if not Global.combat:
+		pass
 	if hp<=0:
 		queue_free()
 		return
 	if not moving:
 		return
+	if velocity.x<0:
+		animation.flip_h=true
+	else:
+		animation.flip_h=false
 	var collision=move_and_collide(velocity*delta)
 	if collision and moving:
 		velocity=velocity.bounce(collision.get_normal())*bounciness
@@ -108,7 +133,7 @@ func _physics_process(delta: float) -> void:
 		match type:
 			'crab','turtle':
 				if is_enemy and ready_to_hit:
-					collider.hp-=15 if type=='crab' else 10
+					collider.hp-=20 if type=='crab' else 10
 					if type=='crab':animation.play("crab_attack")
 					collider.flash_animation.play("flash")
 					slap.play()
@@ -126,7 +151,8 @@ func _physics_process(delta: float) -> void:
 			'porcupine':
 				if is_enemy and ready_to_hit:
 					fire(type)
-
+					animation.play("porcupine_attack")
+	
 
 func _on_animation_finished() -> void:
 	animation.play(type)
@@ -149,3 +175,11 @@ func _on_grow_timer_timeout() -> void:
 	grown=true
 	animation.play("chicken")
 	cluck.play()
+
+
+func _on_mouse_entered() -> void:
+	mouse_on=true
+
+
+func _on_mouse_exited() -> void:
+	mouse_on=false

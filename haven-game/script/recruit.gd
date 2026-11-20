@@ -97,12 +97,13 @@ func hideall():
 	for description in descriptions:
 		for i in description:
 			i.hide()
-	Global.ready_to_start = true
 func _pick(i: int):
 	Global.animals.append(choices[i])
 	hideall()
 	if center_container:
 		center_container.visible = true
+	Global.ready_to_start=true
+	Global.arrange.emit()
 
 func _on_option_1_pressed() -> void: _pick(0)
 func _on_option_2_pressed() -> void: _pick(1)
