@@ -218,7 +218,7 @@ sources/3 = SubResource("TileSetAtlasSource_sb2pt")
 
 [node name="Node2D" type="Node2D" unique_id=2084065845]
 
-[node name="TileMap" type="TileMap" parent="." unique_id=505390664]
+[node name="Map3" type="TileMap" parent="." unique_id=505390664]
 tile_set = SubResource("TileSet_iqkd1")
 format = 2
 layer_0/name = "Water"
