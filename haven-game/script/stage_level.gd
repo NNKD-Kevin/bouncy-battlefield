@@ -10,6 +10,9 @@ const ANIMAL=preload("res://scenes/animal.tscn")
 @onready var sandstorm_timer: Timer = $Timers/Sandstorm_Timer
 @onready var sandstorm_effect: Panel = $CanvasLayer/Sandstorm_Effect
 @onready var sandstorm_count: Label = $CanvasLayer/Sandstorm_Count
+@onready var button: Button = $"CanvasLayer/Time speed/Button"
+@onready var button_2: Button = $"CanvasLayer/Time speed/Button2"
+@onready var button_3: Button = $"CanvasLayer/Time speed/Button3"
 
 
 var starting_nodes:int
@@ -40,6 +43,9 @@ func select_map(index: int) -> void:
 			for layer in m.get_layers_count():
 				m.set_layer_enabled(layer, active)
 func _ready():
+	button.visible = false
+	button_2.visible = false
+	button_3.visible = false
 	music.play()
 	if center_container:
 		center_container.visible = false
@@ -79,6 +85,7 @@ func _process(_delta: float) -> void:
 		sandstorm_effect.visible=false
 		get_tree().change_scene_to_file("res://scenes/Defeat.tscn")
 		clear()
+		Engine.time_scale = 1.0
 	elif enemies_left == 0:
 		if Global.level==10:
 			get_tree().change_scene_to_file("res://scenes/win.tscn")
@@ -88,6 +95,7 @@ func _process(_delta: float) -> void:
 		Global.enemies=[]
 		print(Global.level)
 		clear()
+		Engine.time_scale = 1.0
 		if Global.level<10:
 			h_box_container.choose()
 		
@@ -97,6 +105,9 @@ func _input(event: InputEvent) -> void:
 		if center_container:
 			center_container.visible=false
 		select_map(randi()%maps.get_child_count())
+		button.visible = true
+		button_2.visible = true
+		button_3.visible = true
 		for enemy in Global.enemies:
 			spawn_type(enemy,'bad')
 		for animal in Global.animals:
@@ -111,3 +122,12 @@ func _on_sandstorm_timer_timeout() -> void:
 	Global.sandstorm_on=true
 	sandstorm_effect.visible=true
 	sandstorm.play()
+
+func _on_button_pressed() -> void:
+	Engine.time_scale = 1.0
+
+func _on_button_2_pressed() -> void:
+	Engine.time_scale = 3.0
+
+func _on_button_3_pressed() -> void:
+	Engine.time_scale = 5.0
