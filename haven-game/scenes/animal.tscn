@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c61x748ofga2c" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Clucking Chicken/CluckingChicken.png" id="4_ybi86"]
 [ext_resource type="Texture2D" uid="uid://c7w6jcxxf2kik" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Dainty Pig/DaintyPig.png" id="6_fiknr"]
 [ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="6_hb82n"]
+[ext_resource type="Texture2D" uid="uid://d2qywne61na5w" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Spikey Porcupine/SpikeyPorcupine.png" id="7_d06xb"]
 [ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="7_fiknr"]
 [ext_resource type="AudioStream" uid="uid://cu1yrcjmsmf14" path="res://assets/Sounds/wolf_howl.wav" id="9_ybi86"]
 [ext_resource type="AudioStream" uid="uid://drbq15fvyxn0r" path="res://assets/Sounds/chicken_cluck.mp3" id="10_hb82n"]
@@ -83,6 +84,26 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwbau"]
 atlas = ExtResource("6_fiknr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gceah"]
+atlas = ExtResource("7_d06xb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s21jh"]
+atlas = ExtResource("7_d06xb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjlt7"]
+atlas = ExtResource("7_d06xb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp041"]
+atlas = ExtResource("7_d06xb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7do3a"]
+atlas = ExtResource("7_d06xb")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6xtm"]
@@ -194,6 +215,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gceah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s21jh")
+}],
+"loop": 1,
+"name": &"porcupine",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjlt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp041")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7do3a")
+}],
+"loop": 1,
+"name": &"porcupine_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_i6xtm")
 }, {
 "duration": 1.0,
@@ -293,8 +339,9 @@ shape = SubResource("RectangleShape2D_v5gy4")
 material = SubResource("ShaderMaterial_1vivr")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1vivr")
-animation = &"chicken"
+animation = &"porcupine_attack"
 autoplay = "crab"
+frame_progress = 0.7157721
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1629936786]
 root_node = NodePath("../..")

@@ -24,7 +24,7 @@ var index=0
 @onready var center_container: CenterContainer = $"../../CenterContainer"
 @onready var upcoming_sprite: HBoxContainer = $"../../Upcoming Enemy2/Upcoming_sprite"
 @onready var upcoming: Label = $"../../Upcoming Enemy2/Upcoming"
-const ENEMY_TYPES = ["crab", "chick", "wolf", "turtle","pig"]
+
 @onready var u_1: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U1/U1"
 @onready var u_2: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U2/U2"
 @onready var u_3: AnimatedSprite2D = $"../../Upcoming Enemy2/Upcoming_sprite/U3/U3"
@@ -53,41 +53,35 @@ func choose():
 	choices=[]
 	index=0
 	for sprite in options:
-		var gacha=randi_range(1,5)
+		var gacha=randi_range(1,6)
 		if sprite:
 			if gacha==1:
-				sprite.play('Chicken')
+				sprite.play('chick')
 				choices.append('chick')
 				if descriptions[index][0]:descriptions[index][0].visible=true
 			elif gacha==2:
-				sprite.play('Crab')
+				sprite.play('crab')
 				choices.append('crab')
 				if descriptions[index][1]:descriptions[index][1].visible=true
 			elif gacha==3:
-				sprite.play('Turtle')
+				sprite.play('turtle')
 				choices.append('turtle')
 				if descriptions[index][2]:descriptions[index][2].visible=true
 			elif gacha==4:
-				sprite.play('Wolf')
+				sprite.play('wolf')
 				choices.append('wolf')
 				if descriptions[index][3]:descriptions[index][3].visible=true
 			elif gacha==5:
-				sprite.play("Pig")
+				sprite.play("pig")
 				choices.append('pig')
+			elif gacha==6:
+				sprite.play("porcupine")
+				choices.append('porcupine')
 		index+=1
 	for i in range(Global.level):
-		Global.enemies.append(ENEMY_TYPES.pick_random())
+		Global.enemies.append(AnimalData.ENEMY_TYPES.pick_random())
 	for i in range(Global.level):
-		if Global.enemies[i]=='chick':
-			upcomings[i].play("Chicken")
-		if Global.enemies[i]=='crab':
-			upcomings[i].play("Crab")
-		if Global.enemies[i]=='turtle':
-			upcomings[i].play("Turtle")
-		if Global.enemies[i]=='wolf':
-			upcomings[i].play("Wolf")
-		if Global.enemies[i]=='pig':
-			upcomings[i].play("Pig")
+		upcomings[i].play(Global.enemies[i])
 		upcomings[i].visible=true
 func _ready():
 	for i in upcomings:

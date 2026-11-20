@@ -32,7 +32,7 @@ var egg=preload("res://scenes/egg.tscn")
 var devour_ready=false
 #Pig
 var poo=preload("res://scenes/poo.tscn")
-const POO_SPEED = 0.01
+const POO_SPEED = 0.0001
 
 func _ready() -> void:
 	green_style.bg_color = Color.GREEN
@@ -46,15 +46,19 @@ func _ready() -> void:
 	health_bar.add_theme_stylebox_override("fill",red_style if side=='bad' else green_style)
 	speed=data.speed
 	animation.play(type)
-	velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
-	
+	if type=='crab':
+		velocity=Vector2.RIGHT.rotated(randi()%2*180)*speed
+	else:
+		velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
 	match type:
 		"chick":grow_timer.start()
 		"wolf":devour_timer.start()
-		"pig":grown=true
+		"pig","porcupine":grown=true
 func _process(delta: float) -> void:
 	health_bar.value=hp
 	if type=='wolf' and devour_ready:
+		hp-=delta*5
+	if Global.sandstorm_on:
 		hp-=delta*5
 
 func fire(type:String):
@@ -68,10 +72,16 @@ func fire(type:String):
 		bullet.velocity=velocity*POO_SPEED
 	bullet.add_collision_exception_with(self)
 	add_collision_exception_with(bullet)
-	bullet.side=side
-	bullet.rotation = global_rotation
-	get_parent().add_child(bullet)
-	bullet.global_position = $CollisionShape2D.global_position
+	if type!='porcupine':
+		bullet.side=side
+		get_parent().add_child(bullet)
+		bullet.global_position = $CollisionShape2D.global_position
+	else:
+		for i in range(12):
+			bullet.velocity=velocity.rotated(30*i)
+			get_parent().add_child(bullet)
+			bullet.global_position = $CollisionShape2D.global_position
+			
 	
 
 func _physics_process(delta: float) -> void:
