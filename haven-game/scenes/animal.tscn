@@ -342,7 +342,7 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1vivr")
 animation = &"porcupine_attack"
 autoplay = "crab"
-frame_progress = 0.6581417
+frame_progress = 0.3537146
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1629936786]
 root_node = NodePath("../..")

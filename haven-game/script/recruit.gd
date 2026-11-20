@@ -20,7 +20,6 @@ extends HBoxContainer
 @onready var turtle3: Label = $Option3/Description/Turtle
 @onready var description3=[chicken3,crab3,turtle3,wolf3]
 @onready var descriptions=[description1,description2,description3]
-var index=0
 @onready var center_container: CenterContainer = $"../../CenterContainer"
 @onready var upcoming_sprite: HBoxContainer = $"../../Upcoming Enemy2/Upcoming_sprite"
 @onready var upcoming: Label = $"../../Upcoming Enemy2/Upcoming"
@@ -40,7 +39,7 @@ var index=0
 @onready var button: Button = $"../../Time speed/Button"
 @onready var button_2: Button = $"../../Time speed/Button2"
 @onready var button_3: Button = $"../../Time speed/Button3"
-
+var  cache=[]
 var choices=[]
 func choose():
 	button.visible = false
@@ -57,33 +56,14 @@ func choose():
 		if option:
 			option.visible=true
 	choices=[]
-	index=0
-	for sprite in options:
+	while len(cache)<3:
 		var gacha=randi_range(1,6)
-		if sprite:
-			if gacha==1:
-				sprite.play('chick')
-				choices.append('chick')
-				if descriptions[index][0]:descriptions[index][0].visible=true
-			elif gacha==2:
-				sprite.play('crab')
-				choices.append('crab')
-				if descriptions[index][1]:descriptions[index][1].visible=true
-			elif gacha==3:
-				sprite.play('turtle')
-				choices.append('turtle')
-				if descriptions[index][2]:descriptions[index][2].visible=true
-			elif gacha==4:
-				sprite.play('wolf')
-				choices.append('wolf')
-				if descriptions[index][3]:descriptions[index][3].visible=true
-			elif gacha==5:
-				sprite.play("pig")
-				choices.append('pig')
-			elif gacha==6:
-				sprite.play("porcupine")
-				choices.append('porcupine')
-		index+=1
+		if gacha not in cache:
+			cache.append(gacha)
+	for i in range(len(options)):
+		var a=cache[i]-1
+		options[i].play(AnimalData.ENEMY_TYPES[a])
+		choices.append(AnimalData.ENEMY_TYPES[a])
 	for i in range(Global.level):
 		Global.enemies.append(AnimalData.ENEMY_TYPES.pick_random())
 	for i in range(Global.level):

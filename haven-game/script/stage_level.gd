@@ -13,9 +13,11 @@ const ANIMAL=preload("res://scenes/animal.tscn")
 @onready var button: Button = $"CanvasLayer/Time speed/Button"
 @onready var button_2: Button = $"CanvasLayer/Time speed/Button2"
 @onready var button_3: Button = $"CanvasLayer/Time speed/Button3"
+@onready var buttons=[button,button_2,button_3]
 @onready var animal_panel: Panel = $Animal_Panel
-
-
+var white_style := StyleBoxFlat.new()
+var blue_style := StyleBoxFlat.new()
+var current_button=button
 var starting_nodes:int
 var current_nodes:int
 var x_min=0
@@ -40,10 +42,19 @@ func select_map(index: int) -> void:
 		if m is TileMap:
 			for layer in m.get_layers_count():
 				m.set_layer_enabled(layer, active)
+func update_buttons()->void:
+	for b in buttons:
+		var style=blue_style if b==current_button else white_style
+		b.add_theme_stylebox_override('normal',style)
 func _ready():
+	current_button=button
+	update_buttons()
 	button.visible = false
 	button_2.visible = false
 	button_3.visible = false
+	white_style.bg_color=Color.WHITE
+	blue_style.bg_color=Color.SKY_BLUE
+	
 	Global.arrange.connect(_on_arrange)
 	music.play()
 	if center_container:
@@ -60,7 +71,7 @@ func spawn_type(type:String,side:String):
 		node.position = Vector2(randi_range(spawn_x, spawn_x+x_offset), randi_range(y_min, y_max))
 	elif side=='good':
 		if spawn_count<5:
-			node.position=Vector2(50+50*int(spawn_count/5),100*(spawn_count%5))
+			node.position=Vector2(50+50*int(spawn_count/5),50+100*(spawn_count%5))
 			node.initial_position=node.position
 	node.add_to_group("animals" if is_good else "enemies")
 	add_child(node)
@@ -83,6 +94,7 @@ func clear():
 		e.queue_free()
 		
 func _process(_delta: float) -> void:
+		
 	if Global.sandstorm_on:
 		sandstorm_effect.visible=true
 	else:
@@ -124,6 +136,8 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start") and not Global.combat and Global.ready_to_start:
+		current_button=button
+		update_buttons()
 		Global.ready_to_start=false
 		if center_container:
 			center_container.visible=false
@@ -142,9 +156,13 @@ func _on_sandstorm_timer_timeout() -> void:
 
 func _on_button_pressed() -> void:
 	Engine.time_scale = 1.0
-
+	current_button=button
+	update_buttons()
 func _on_button_2_pressed() -> void:
 	Engine.time_scale = 3.0
-
+	current_button=button_2
+	update_buttons()
 func _on_button_3_pressed() -> void:
 	Engine.time_scale = 5.0
+	current_button=button_3
+	update_buttons()
