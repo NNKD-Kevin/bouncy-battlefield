@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dy2hjbsdccgwe" path="res://assets/Sounds/sandstorm.mp3" id="7_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://bc42s2dmhbce6" path="res://assets/Sounds/boss.mp3" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://d2qywne61na5w" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Spikey Porcupine/SpikeyPorcupine.png" id="12_eb6dy"]
+[ext_resource type="FontFile" uid="uid://c0cywrs2b2m11" path="res://assets/Pix32.ttf" id="13_trceg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_o6xl0")
@@ -645,6 +646,96 @@ bg_color = Color(0.70980394, 0.5921569, 0, 0.42745098)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrlf"]
 bg_color = Color(0, 0, 0, 0.5803922)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkv2x"]
+bg_color = Color(0.15487596, 0.154876, 0.1548759, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
+bg_color = Color(0.55561996, 0.55561996, 0.55561996, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
+bg_color = Color(0.15487596, 0.154876, 0.1548759, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ld40"]
+bg_color = Color(0.55561996, 0.55561996, 0.55561996, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmmt"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
+bg_color = Color(0.15487596, 0.154876, 0.1548759, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
+bg_color = Color(0.55561996, 0.55561996, 0.55561996, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-2, 2)
+
 [node name="Game" type="Node2D" unique_id=1046699917]
 script = ExtResource("1_tipki")
 
@@ -1075,6 +1166,44 @@ theme_override_fonts/font = ExtResource("2_85g3d")
 theme_override_font_sizes/font_size = 30
 text = "100"
 
+[node name="Time speed" type="Node" parent="CanvasLayer" unique_id=1515589030]
+
+[node name="Button" type="Button" parent="CanvasLayer/Time speed" unique_id=811803850]
+offset_left = 20.0
+offset_top = 28.0
+offset_right = 98.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_trceg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a8y0u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jkv2x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jbj1t")
+text = "x1 SPEED"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Time speed" unique_id=736774040]
+offset_left = 20.0
+offset_top = 67.0
+offset_right = 98.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_trceg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_muem4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dp3eg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ld40")
+text = "x3 SPEED"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Time speed" unique_id=190349023]
+offset_left = 21.0
+offset_top = 105.0
+offset_right = 98.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_trceg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gqmmt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yc10j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jscy8")
+text = "x5 SPEED"
+
 [node name="Timers" type="Node" parent="." unique_id=666994577]
 
 [node name="Sandstorm_Timer" type="Timer" parent="Timers" unique_id=1998932448]
@@ -1092,4 +1221,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8vrlf")
 [connection signal="pressed" from="CanvasLayer/Recruit/HBoxContainer/Option1" to="CanvasLayer/Recruit/HBoxContainer" method="_on_option_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Recruit/HBoxContainer/Option2" to="CanvasLayer/Recruit/HBoxContainer" method="_on_option_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Recruit/HBoxContainer/Option3" to="CanvasLayer/Recruit/HBoxContainer" method="_on_option_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Time speed/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Time speed/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Time speed/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="timeout" from="Timers/Sandstorm_Timer" to="." method="_on_sandstorm_timer_timeout"]
