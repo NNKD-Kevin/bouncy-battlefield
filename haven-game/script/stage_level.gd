@@ -26,6 +26,7 @@ var spawn_count=0
 
 func select_map(index: int) -> void:
 	var children = maps.get_children()
+	Global.current_map=str(index)
 	for i in children.size():
 		var active = (i == index)
 		if index==0:
@@ -63,10 +64,13 @@ func spawn_type(type:String,side:String):
 	if side=='bad':
 		node.position = Vector2(randi_range(spawn_x, spawn_x+x_offset), randi_range(y_min, y_max))
 	elif side=='good':
-		node.position=Vector2(50,50*spawn_count)
+		if spawn_count<5:
+			node.position=Vector2(50+50*int(spawn_count/5),100*(spawn_count%5))
+			node.initial_position=node.position
 	node.add_to_group("animals" if is_good else "enemies")
 	add_child(node)
 	spawn_count+=1
+	
 func _on_arrange():
 	spawn_count=0
 	select_map(randi()%maps.get_child_count())
@@ -74,6 +78,7 @@ func _on_arrange():
 		spawn_type(enemy,'bad')
 	for animal in Global.animals:
 		spawn_type(animal,'good')
+		
 func clear():
 	if not is_inside_tree():
 		return
@@ -81,6 +86,7 @@ func clear():
 		a.queue_free()
 	for e in get_tree().get_nodes_in_group("enemies"):
 		e.queue_free()
+		
 func _process(_delta: float) -> void:
 	if Global.sandstorm_on:
 		sandstorm_effect.visible=true
