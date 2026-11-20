@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://4so7t222clb" path="res://assets/Sprout Lands - Sprites - Basic pack/Tilesets/Hills.png" id="3_iw27f"]
 [ext_resource type="Texture2D" uid="uid://c4bfhcet3n2qh" path="res://assets/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png" id="4_71pa8"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_05x41"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cso3"]
 texture = ExtResource("1_p5pve")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.1710625, -7.1348906, 3.1710615, -6.936699, 2.9728708, 8, -2.9728718, 8)
@@ -40,14 +40,14 @@ texture = ExtResource("1_p5pve")
 3:3/0 = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.0719671, -8, 2.7746801, -8, 3.2701578, -3.8647318, 3.0719671, 1.5855312, 2.8737745, 3.963829, 1.1891489, 4.261116, -0.8918619, 4.1620197, -2.9728718, 4.0629234, -3.1710625, 2.1801052, -8, 1.6846275, -8, -3.963828, -3.0719671, -3.7656364)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqbix"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2klcf"]
 texture = ExtResource("2_urblq")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oysan"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2lpho"]
 texture = ExtResource("3_iw27f")
 0:0/0 = 0
 1:0/0 = 0
@@ -135,7 +135,7 @@ texture = ExtResource("3_iw27f")
 6:8/0 = 0
 7:8/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb2pt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nakos"]
 texture = ExtResource("4_71pa8")
 0:0/0 = 0
 1:0/0 = 0
@@ -211,10 +211,10 @@ texture = ExtResource("4_71pa8")
 
 [sub_resource type="TileSet" id="TileSet_iqkd1"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_05x41")
-sources/1 = SubResource("TileSetAtlasSource_gqbix")
-sources/2 = SubResource("TileSetAtlasSource_oysan")
-sources/3 = SubResource("TileSetAtlasSource_sb2pt")
+sources/0 = SubResource("TileSetAtlasSource_0cso3")
+sources/1 = SubResource("TileSetAtlasSource_2klcf")
+sources/2 = SubResource("TileSetAtlasSource_2lpho")
+sources/3 = SubResource("TileSetAtlasSource_nakos")
 
 [node name="Node2D" type="Node2D" unique_id=2084065845]
 

@@ -29,16 +29,11 @@ func select_map(index: int) -> void:
 	Global.current_map=str(index)
 	for i in children.size():
 		var active = (i == index)
-		if index==0:
-			x_min=250
-			x_max=900
-			y_min=150
-			y_max=500
-		elif index==1:
-			x_min=300
-			x_max=875
-			y_min=200
-			y_max=350
+		var map=AnimalData.MAPS[Global.current_map]
+		x_min=map.x_min
+		x_max=map.x_max+(map.x_max-map.x_min)
+		y_min=map.y_min
+		y_max=map.y_max
 		var m = children[i]
 		m.visible = active
 		m.process_mode = Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED

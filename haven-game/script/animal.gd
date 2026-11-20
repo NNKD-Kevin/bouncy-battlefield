@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 		self.position=get_global_mouse_position()
 		queue_redraw()
 func _draw() -> void:
-	if dragging and Global.ready_to_start:
+	if dragging and Global.ready_to_start and not Global.combat:
 		var r: Rect2 = AnimalData.MAPS[Global.current_map].rect
 		draw_rect(Rect2(to_local(r.position),r.size),Color.GREEN,false,3.0)
 
