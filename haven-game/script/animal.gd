@@ -27,6 +27,8 @@ var data:Dictionary
 var mouse_on =false
 var dragging=false
 var valid=false
+var aiming=false
+var direction=Vector2.ZERO
 var initial_position=Vector2(0,0)
 #Chick
 var grown=false
@@ -57,29 +59,42 @@ func _ready() -> void:
 	animation.play(type)
 	if side=='bad':
 		health_bar.visible=true
+		direction=Vector2.RIGHT.rotated(randf()*TAU)
 
 
 func _input(event: InputEvent) -> void:
 	if mouse_on and Input.is_action_just_pressed("drag") and side=='good':
-		dragging=true
-	if Input.is_action_just_released('drag') and dragging and side=='good':
-		dragging=false
-		queue_redraw()
-		var map=AnimalData.MAPS[Global.current_map]
-		if map.rect.has_point(position):
-			valid=true
+		if Input.is_key_pressed(KEY_SHIFT):
+			aiming=true
 		else:
-			valid=false
-			position=initial_position
+			dragging=true
+	if Input.is_action_just_released('drag')and side=='good':
+		if aiming:
+			aiming=false
+			queue_redraw()
+		elif dragging:
+			dragging=false
+			queue_redraw()
+			var map=AnimalData.MAPS[Global.current_map]
+			if map.rect.has_point(position):
+				valid=true
+			else:
+				valid=false
+				position=initial_position
 	if event.is_action_pressed("start") and not Global.combat and Global.ready_to_start:
 		health_bar.visible=true
+		queue_redraw()
 		if side=='good' and not valid:
 			var map=AnimalData.MAPS[Global.current_map]
 			position=Vector2(randi_range(map.x_min,map.x_max),randi_range(map.y_min,map.y_max))
-		if type=='crab':
-			velocity=Vector2.RIGHT.rotated(randi()%2*180)*speed
-		else:
+		velocity=direction*speed
+		if direction==Vector2.ZERO:
 			velocity=Vector2.RIGHT.rotated(randf()*TAU)*speed
+		if type=='crab':
+			if velocity.x>0:
+				velocity=Vector2.RIGHT*speed
+			else:
+				velocity=Vector2.LEFT*speed
 		match type:
 			"chick":grow_timer.start()
 			"wolf":devour_timer.start()
@@ -94,11 +109,34 @@ func _process(delta: float) -> void:
 	if dragging and Global.ready_to_start:
 		self.position=get_global_mouse_position()
 		queue_redraw()
+	elif aiming and Global.ready_to_start:
+		var to_mouse=get_global_mouse_position()-global_position
+		if to_mouse.length()>10.0:
+			direction=to_mouse.normalized()
+		queue_redraw()
+func draw_arrow(from:Vector2,to:Vector2)->void:
+	var head_size=14
+	var width=3.0
+	var dir = (to-from).normalized()
+	var perp=dir.orthogonal()
+	var color=Color.RED
+	var base = to - dir * head_size
+	draw_line(from,base,color,width)
+	var head = PackedVector2Array([
+		to,
+		base + perp * head_size * 0.5,
+		base - perp * head_size * 0.5,
+	])
+	draw_colored_polygon(head, color)
+
 func _draw() -> void:
+	if Global.combat:
+		return
 	if dragging and Global.ready_to_start and not Global.combat:
 		var r: Rect2 = AnimalData.MAPS[Global.current_map].rect
 		draw_rect(Rect2(to_local(r.position),r.size),Color.GREEN,false,3.0)
-
+	if direction!=Vector2.ZERO:
+		draw_arrow(Vector2.ZERO,direction*60)
 func fire(type:String):
 	if type=='porcupine':
 		for i in range(15):

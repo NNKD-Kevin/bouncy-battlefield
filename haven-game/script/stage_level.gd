@@ -80,10 +80,10 @@ func spawn_type(type:String,side:String):
 func _on_arrange():
 	spawn_count=0
 	select_map(randi()%maps.get_child_count())
-	for enemy in Global.enemies:
-		spawn_type(enemy,'bad')
 	for animal in Global.animals:
 		spawn_type(animal,'good')
+	for enemy in Global.enemies:
+		spawn_type(enemy,'bad')
 		
 func clear():
 	if not is_inside_tree():
@@ -117,6 +117,7 @@ func _process(_delta: float) -> void:
 	if animals_left == 0:
 		Global.combat = false
 		Global.sandstorm_on=false
+		sandstorm_timer.stop()
 		get_tree().change_scene_to_file("res://scenes/Defeat.tscn")
 		clear()
 		Engine.time_scale = 1.0
@@ -125,6 +126,7 @@ func _process(_delta: float) -> void:
 			get_tree().change_scene_to_file("res://scenes/win.tscn")
 		Global.combat = false
 		Global.sandstorm_on=false
+		sandstorm_timer.stop()
 		Global.level += 1
 		Global.enemies=[]
 		print(Global.level)
@@ -146,6 +148,7 @@ func _input(event: InputEvent) -> void:
 		button_3.visible = true
 		Global.combat = true
 		Global.sandstorm_on=false
+		sandstorm_timer.wait_time=100
 		sandstorm_timer.start()
 		
 

@@ -21,14 +21,16 @@ const DESCRIPTIONS	={
 HP: 100
 Ability: Start as a harmless 
 chick then grow after 15s
-Bounce Edges: shoots egg which 
+Bounce Against Edges: 
+shoots egg which 
 deals 5 damage to enemy or 
 heals 10 HP to allies',
 
-"crab":'CRAB:
+"crab":
+'CRAB:
 HP: 100
-Bounce enemies: Deal 20 damage 
-to them',
+Bounce against enemies: 
+Deal 20 damage to them',
 
 'wolf':
 'WOLF:
@@ -36,18 +38,31 @@ HP: 100
 Ability: Gets hungry every 30s
 During hunger: Lose health every 
 second. 
-Bounce enemies: Devour
+Bounce against enemies: Devour
 them and gain their current HP if 
 is hungry',
 
 'turtle':
-'Turtle:
+'TURTLE:
 HP: 250
 Ability: Moves super slowly
-Bounce Enemies: Deal 
-10 damage on them',
+Bounce Against Enemies: 
+Deal 10 damage on them',
 
-'pig':'Pig',
-'porcupine':'Porcupine'
+'pig':
+'PIG:
+HP: 100
+Bounce Against Edges:
+Drop a poo that deals 5 damage
+and stun enemies for 2 seconds
+when they step on.',
+
+'porcupine':
+'PORCUPINE:
+HP:100
+Bounce Against Enemies:
+Shoot 15 spikes in a circle,
+dealing 10 damage to anything
+that touches'
 
 }
