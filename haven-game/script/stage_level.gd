@@ -15,6 +15,15 @@ const ANIMAL=preload("res://scenes/animal.tscn")
 @onready var button_3: Button = $"CanvasLayer/Time speed/Button3"
 @onready var buttons=[button,button_2,button_3]
 @onready var animal_panel: Panel = $Animal_Panel
+@onready var timer_die: Timer = $Timer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var defeated: Label = $Defeat/Label
+@onready var timer_bounce: Timer = $Timer2
+@onready var bounce: Label = $Defeat/Label2
+@onready var timer_retry: Timer = $Timer3
+@onready var retry: Button = $Defeat/retry
+@onready var slap: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 var white_style := StyleBoxFlat.new()
 var blue_style := StyleBoxFlat.new()
 var current_button=button
@@ -60,6 +69,15 @@ func _ready():
 	if center_container:
 		center_container.visible = false
 	sandstorm_effect.visible=false
+	bounce.visible = false
+	defeated.visible = false
+	retry.visible = false
+	if l == 1:
+		bounce.visible = false
+		defeated.visible = false
+		retry.visible = false
+		timer_die.start()
+		animation_player.play("darken")
 func spawn_type(type:String,side:String):
 	var node = ANIMAL.instantiate()
 	node.type=type
@@ -119,7 +137,7 @@ func _process(_delta: float) -> void:
 		Global.combat = false
 		Global.sandstorm_on=false
 		sandstorm_timer.stop()
-		get_tree().change_scene_to_file("res://scenes/Defeat.tscn")
+		l = 1
 		clear()
 		Engine.time_scale = 1.0
 	elif enemies_left == 0:
@@ -170,3 +188,36 @@ func _on_button_3_pressed() -> void:
 	Engine.time_scale = 5.0
 	current_button=button_3
 	update_buttons()
+	
+	
+	
+	
+	
+	#Defeat Scene Carry-over
+
+
+var l = 0
+
+
+	
+	
+	
+func _on_timer_timeout() -> void:
+	slap.play()
+	defeated.visible = true
+	timer_bounce.start()
+
+
+func _on_timer_2_timeout() -> void:
+	slap.play()
+	bounce.visible = true
+	timer_retry.start()
+	
+func _on_timer_3_timeout() -> void:
+	slap.play()
+	button.visible = true
+	
+
+func _on_retry_pressed() -> void:
+	Global.reset_run()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

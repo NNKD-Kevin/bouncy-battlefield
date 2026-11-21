@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://c0cywrs2b2m11" path="res://assets/Pix32.ttf" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="14_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="15_0ld40"]
+[ext_resource type="AudioStream" uid="uid://jgargahnfp5v" path="res://assets/Sounds/slap.wav" id="17_muem4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_o6xl0")
@@ -1076,6 +1077,78 @@ shadow_offset = Vector2(-2, 2)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrlf"]
 bg_color = Color(0, 0, 0, 0.5803922)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pm3ni"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6deb"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og1vs"]
+bg_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="Animation" id="Animation_wtg6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oh8ql"]
+resource_name = "You Lost"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_btxua"]
+resource_name = "darken"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.9019608)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wyq8"]
+_data = {
+&"RESET": SubResource("Animation_wtg6v"),
+&"You Lost": SubResource("Animation_oh8ql"),
+&"darken": SubResource("Animation_btxua")
+}
+
 [node name="Game" type="Node2D" unique_id=1046699917]
 script = ExtResource("1_tipki")
 
@@ -1452,6 +1525,65 @@ offset_bottom = 636.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8vrlf")
 
+[node name="Defeat" type="Node" parent="." unique_id=1137431104]
+
+[node name="ColorRect" type="ColorRect" parent="Defeat" unique_id=1956695223]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1158.0
+offset_bottom = 654.0
+color = Color(0, 0, 0, 0)
+
+[node name="retry" type="Button" parent="Defeat" unique_id=33829046]
+offset_left = 277.0
+offset_top = 371.0
+offset_right = 891.0
+offset_bottom = 613.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_85g3d")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm3ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y6deb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_og1vs")
+text = "Retry"
+
+[node name="Label2" type="Label" parent="Defeat" unique_id=144707028]
+offset_left = 82.0
+offset_top = 277.0
+offset_right = 1119.0
+offset_bottom = 348.0
+theme_override_fonts/font = ExtResource("2_85g3d")
+theme_override_font_sizes/font_size = 70
+text = "You can still bounce back!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Defeat" unique_id=857886036]
+libraries/ = SubResource("AnimationLibrary_2wyq8")
+
+[node name="Label" type="Label" parent="Defeat" unique_id=1688934531]
+offset_left = 159.0
+offset_top = 43.0
+offset_right = 1020.0
+offset_bottom = 214.0
+theme_override_fonts/font = ExtResource("2_85g3d")
+theme_override_font_sizes/font_size = 170
+text = "You lost!"
+
+[node name="Timer" type="Timer" parent="Defeat" unique_id=234326087]
+wait_time = 4.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="Defeat" unique_id=1519539563]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="Defeat" unique_id=755866694]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Defeat" unique_id=1538313249]
+stream = ExtResource("17_muem4")
+
 [connection signal="pressed" from="CanvasLayer/Recruit/HBoxContainer/Option1" to="CanvasLayer/Recruit/HBoxContainer" method="_on_option_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Recruit/HBoxContainer/Option2" to="CanvasLayer/Recruit/HBoxContainer" method="_on_option_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Recruit/HBoxContainer/Option3" to="CanvasLayer/Recruit/HBoxContainer" method="_on_option_3_pressed"]
@@ -1459,3 +1591,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8vrlf")
 [connection signal="pressed" from="CanvasLayer/Time speed/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Time speed/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="timeout" from="Timers/Sandstorm_Timer" to="." method="_on_sandstorm_timer_timeout"]
+[connection signal="pressed" from="Defeat/retry" to="." method="_on_retry_pressed"]
