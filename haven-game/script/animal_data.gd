@@ -53,7 +53,7 @@ Deal 10 damage on them',
 'PIG:
 HP: 100
 Bounce Against Edges:
-Drop a poo that deals 5 damage
+Drop a poo that deals 10 damage
 and stun enemies for 2 seconds
 when they step on.',
 

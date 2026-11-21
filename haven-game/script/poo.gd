@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 		var collider=collision.get_collider()
 		if collider is CharacterBody2D:
 			if collider.side!=side:
-				collider.hp-=5
+				collider.hp-=10
 				collider.moving=false
 				if collider.stun:
 					collider.stun.wait_time=2

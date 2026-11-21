@@ -5,14 +5,17 @@
 [ext_resource type="FontFile" uid="uid://cqwa2xlvhatxv" path="res://assets/Pixelout Personal Use Only.ttf" id="2_85g3d"]
 [ext_resource type="Texture2D" uid="uid://c2l4jjr7llacl" path="res://assets/Sprout Lands - Sprites - Basic pack/Tilesets/Fences.png" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://dk3nov0xb4p4l" path="res://assets/Sprout Lands - Sprites - Basic pack/Tilesets/Water.png" id="3_85g3d"]
-[ext_resource type="Texture2D" uid="uid://cn2hyikj1m6c7" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Sprites/Basic Sprites 4x.png" id="4_85g3d"]
 [ext_resource type="Texture2D" uid="uid://4so7t222clb" path="res://assets/Sprout Lands - Sprites - Basic pack/Tilesets/Hills.png" id="4_choun"]
 [ext_resource type="Texture2D" uid="uid://c7w6jcxxf2kik" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Dainty Pig/DaintyPig.png" id="5_choun"]
 [ext_resource type="Script" uid="uid://chyi0p7bytlcf" path="res://script/recruit.gd" id="7_o6xl0"]
 [ext_resource type="AudioStream" uid="uid://dy2hjbsdccgwe" path="res://assets/Sounds/sandstorm.mp3" id="7_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://bc42s2dmhbce6" path="res://assets/Sounds/boss.mp3" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://ddhsm8tulf0rl" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Tiny Chick/TinyChick.png" id="10_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://ct8nh7ot1fykm" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Coral Crab/CoralCrab.png" id="11_muem4"]
 [ext_resource type="Texture2D" uid="uid://d2qywne61na5w" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Spikey Porcupine/SpikeyPorcupine.png" id="12_eb6dy"]
 [ext_resource type="FontFile" uid="uid://c0cywrs2b2m11" path="res://assets/Pix32.ttf" id="13_trceg"]
+[ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="14_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="15_0ld40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_o6xl0")
@@ -678,35 +681,116 @@ corner_detail = 20
 shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
-atlas = ExtResource("4_85g3d")
-region = Rect2(72, 0, 72, 72)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
+atlas = ExtResource("10_jbj1t")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
-atlas = ExtResource("4_85g3d")
-region = Rect2(216, 144, 72, 72)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("10_jbj1t")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("10_jbj1t")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp3eg"]
+atlas = ExtResource("10_jbj1t")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc10j"]
+atlas = ExtResource("11_muem4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
+atlas = ExtResource("11_muem4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxglm"]
+atlas = ExtResource("11_muem4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f3dj"]
+atlas = ExtResource("11_muem4")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
 atlas = ExtResource("5_choun")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq6so"]
+atlas = ExtResource("5_choun")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv21b"]
+atlas = ExtResource("5_choun")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tel4y"]
+atlas = ExtResource("5_choun")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjlt7"]
 atlas = ExtResource("12_eb6dy")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
-atlas = ExtResource("4_85g3d")
-region = Rect2(0, 144, 72, 72)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkpxi"]
+atlas = ExtResource("12_eb6dy")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
-atlas = ExtResource("4_85g3d")
-region = Rect2(288, 72, 72, 72)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q0nq"]
+atlas = ExtResource("12_eb6dy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgi5k"]
+atlas = ExtResource("12_eb6dy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
+atlas = ExtResource("14_dp3eg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm3ni"]
+atlas = ExtResource("14_dp3eg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6deb"]
+atlas = ExtResource("14_dp3eg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og1vs"]
+atlas = ExtResource("14_dp3eg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wyq8"]
+atlas = ExtResource("15_0ld40")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8jky"]
+atlas = ExtResource("15_0ld40")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmb1v"]
+atlas = ExtResource("15_0ld40")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuf3a"]
+atlas = ExtResource("15_0ld40")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ejki1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_choun")
+"texture": SubResource("AtlasTexture_gqmmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp3eg")
 }],
 "loop": 1,
 "name": &"chick",
@@ -714,7 +798,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ya4ey")
+"texture": SubResource("AtlasTexture_yc10j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ld40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxglm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f3dj")
 }],
 "loop": 1,
 "name": &"crab",
@@ -723,6 +816,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8y0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq6so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv21b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tel4y")
 }],
 "loop": 1,
 "name": &"pig",
@@ -731,6 +833,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xjlt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkpxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q0nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgi5k")
 }],
 "loop": 1,
 "name": &"porcupine",
@@ -738,7 +849,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eb6dy")
+"texture": SubResource("AtlasTexture_jscy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm3ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6deb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og1vs")
 }],
 "loop": 1,
 "name": &"turtle",
@@ -746,7 +866,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_trceg")
+"texture": SubResource("AtlasTexture_2wyq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8jky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmb1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuf3a")
 }],
 "loop": 1,
 "name": &"wolf",
@@ -1041,10 +1170,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_85g3d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tipki")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Recruit/HBoxContainer/Option1" unique_id=470237730]
-position = Vector2(145.6, 68.656006)
-scale = Vector2(1.6, 1.546)
+position = Vector2(132, 64)
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ejki1")
-animation = &"porcupine"
+animation = &"chick"
 
 [node name="Description1" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option1" unique_id=1594253500]
 layout_mode = 0
@@ -1070,9 +1199,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ya4ey")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Recruit/HBoxContainer/Option2" unique_id=942982636]
 position = Vector2(145.6, 68.656006)
-scale = Vector2(1.6, 1.546)
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ejki1")
-animation = &"porcupine"
+animation = &"turtle"
 
 [node name="Description2" type="Label" parent="CanvasLayer/Recruit/HBoxContainer/Option2" unique_id=1986092971]
 layout_mode = 0
@@ -1098,7 +1227,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_trceg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Recruit/HBoxContainer/Option3" unique_id=1029671725]
 position = Vector2(145.6, 68.656006)
-scale = Vector2(1.6, 1.546)
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"pig"
 
@@ -1150,9 +1279,9 @@ layout_mode = 2
 [node name="U1" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U1" unique_id=455952564]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
-animation = &"wolf"
+animation = &"porcupine"
 
 [node name="U2" type="Control" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite" unique_id=1615060038]
 layout_mode = 2
@@ -1160,7 +1289,7 @@ layout_mode = 2
 [node name="U2" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U2" unique_id=2047723757]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1170,7 +1299,7 @@ layout_mode = 2
 [node name="U3" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U3" unique_id=394175441]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1180,7 +1309,7 @@ layout_mode = 2
 [node name="U4" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U4" unique_id=150339829]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1190,7 +1319,7 @@ layout_mode = 2
 [node name="U5" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U5" unique_id=377517715]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1200,7 +1329,7 @@ layout_mode = 2
 [node name="U6" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U6" unique_id=919899991]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1210,7 +1339,7 @@ layout_mode = 2
 [node name="U7" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U7" unique_id=2115793594]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1220,7 +1349,7 @@ layout_mode = 2
 [node name="U8" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U8" unique_id=359949791]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1230,7 +1359,7 @@ layout_mode = 2
 [node name="U9" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U9" unique_id=10572739]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
@@ -1240,7 +1369,7 @@ layout_mode = 2
 [node name="U10" type="AnimatedSprite2D" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite/U10" unique_id=1224697527]
 visible = false
 position = Vector2(138, 625)
-scale = Vector2(0.75, 0.725)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
 animation = &"chick"
 
