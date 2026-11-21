@@ -111,6 +111,7 @@ func _process(_delta: float) -> void:
 		sandstorm_count.add_theme_color_override("font_color",Color.RED)
 	else:
 		sandstorm_count.add_theme_color_override("font_color",Color.WHITE)
+	
 	#Win/Lose Condition
 	var animals_left = get_tree().get_nodes_in_group("animals").size()
 	var enemies_left = get_tree().get_nodes_in_group("enemies").size()
