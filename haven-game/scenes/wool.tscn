@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dxmsfybg5qr5w"]
+
+[ext_resource type="Script" uid="uid://2x00oob81u5p" path="res://script/wool.gd" id="1_h3ett"]
+[ext_resource type="Texture2D" uid="uid://djbol0at6o5oo" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Sprites/wool.png" id="2_dv0yh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vivr"]
+radius = 7.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=632679528]
+collision_layer = 2
+script = ExtResource("1_h3ett")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=953948282]
+texture = ExtResource("2_dv0yh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272194000]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_1vivr")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1196098684]
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

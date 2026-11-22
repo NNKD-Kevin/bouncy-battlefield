@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d2qywne61na5w" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Spikey Porcupine/SpikeyPorcupine.png" id="12_eb6dy"]
 [ext_resource type="FontFile" uid="uid://c0cywrs2b2m11" path="res://assets/Pix32.ttf" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="14_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://kki5vqkjq5ox" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Pasturing Sheep/PasturingSheep.png" id="14_muem4"]
 [ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="15_0ld40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
@@ -745,6 +746,18 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("12_eb6dy")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qag4x"]
+atlas = ExtResource("14_muem4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10oeq"]
+atlas = ExtResource("14_muem4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt1bt"]
+atlas = ExtResource("14_muem4")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
 atlas = ExtResource("14_dp3eg")
 region = Rect2(0, 0, 16, 16)
@@ -845,6 +858,20 @@ animations = [{
 }],
 "loop": 1,
 "name": &"porcupine",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qag4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10oeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt1bt")
+}],
+"loop": 1,
+"name": &"sheep",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1281,7 +1308,7 @@ visible = false
 position = Vector2(138, 625)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ejki1")
-animation = &"porcupine"
+animation = &"sheep"
 
 [node name="U2" type="Control" parent="CanvasLayer/Upcoming Enemy2/Upcoming_sprite" unique_id=1615060038]
 layout_mode = 2

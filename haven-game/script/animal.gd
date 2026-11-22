@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Animal
 @onready var health_bar=$HealthBar
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
@@ -41,8 +41,9 @@ const POO_SPEED = 0.0001
 
 #Porcupine
 var spike=preload("res://scenes/spike.tscn")
-const SPIKE_SPEED =200
-
+const SPIKE_SPEED =300
+#Sheep
+var wool=preload('res://scenes/wool.tscn')
 
 func _ready() -> void:
 	green_style.bg_color = Color.GREEN
@@ -98,7 +99,7 @@ func _input(event: InputEvent) -> void:
 		match type:
 			"chick":grow_timer.start()
 			"wolf":devour_timer.start()
-			"pig","porcupine":grown=true
+			"pig","sheep":grown=true
 
 func _process(delta: float) -> void:
 	health_bar.value=hp
@@ -139,8 +140,8 @@ func _draw() -> void:
 		draw_arrow(Vector2.ZERO,direction*60)
 func fire(type:String):
 	if type=='porcupine':
-		for i in range(15):
-			var dir=Vector2.RIGHT.rotated(TAU/15*i)
+		for i in range(20):
+			var dir=Vector2.RIGHT.rotated(TAU/20*i)
 			var s=spike.instantiate()
 			s.velocity=dir*SPIKE_SPEED
 			s.rotation=dir.angle()
@@ -148,6 +149,17 @@ func fire(type:String):
 			add_collision_exception_with(s)
 			get_parent().add_child(s)
 			s.global_position=$CollisionShape2D.global_position
+		return
+	if type=='sheep':
+		var w=wool.instantiate()
+		w.velocity=velocity*POO_SPEED
+		w.add_collision_exception_with(self)
+		w.center=self
+		w.side=side
+		add_collision_exception_with(w)
+		get_parent().add_child(w)
+		w.global_position=global_position
+		w.global_position.x=global_position.x+30
 		return
 	var bullet=null
 	if type=='chick':
@@ -199,7 +211,7 @@ func _physics_process(delta: float) -> void:
 					devour_timer.start()
 					hp=min(max_hp,hp+collider.hp)
 					collider.queue_free()
-			'chick','pig':
+			'chick','pig','sheep':
 				if not (collider is CharacterBody2D) and grown:
 					fire(type)
 			'porcupine':

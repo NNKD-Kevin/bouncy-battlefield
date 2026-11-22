@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cpj3hctbsmyfd" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Timber Wolf/TimberWolf.png" id="6_hb82n"]
 [ext_resource type="Texture2D" uid="uid://d2qywne61na5w" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Spikey Porcupine/SpikeyPorcupine.png" id="7_d06xb"]
 [ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="7_fiknr"]
+[ext_resource type="Texture2D" uid="uid://kki5vqkjq5ox" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Pasturing Sheep/PasturingSheep.png" id="8_gceah"]
 [ext_resource type="AudioStream" uid="uid://cu1yrcjmsmf14" path="res://assets/Sounds/wolf_howl.wav" id="9_ybi86"]
 [ext_resource type="AudioStream" uid="uid://drbq15fvyxn0r" path="res://assets/Sounds/chicken_cluck.mp3" id="10_hb82n"]
 
@@ -104,6 +105,18 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7do3a"]
 atlas = ExtResource("7_d06xb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qag4x"]
+atlas = ExtResource("8_gceah")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10oeq"]
+atlas = ExtResource("8_gceah")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt1bt"]
+atlas = ExtResource("8_gceah")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6xtm"]
@@ -240,6 +253,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qag4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10oeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt1bt")
+}],
+"loop": 1,
+"name": &"sheep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_i6xtm")
 }, {
 "duration": 1.0,
@@ -340,9 +367,9 @@ shape = SubResource("RectangleShape2D_v5gy4")
 material = SubResource("ShaderMaterial_1vivr")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1vivr")
-animation = &"porcupine_attack"
+animation = &"sheep"
 autoplay = "crab"
-frame_progress = 0.3537146
+frame_progress = 0.75050336
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1629936786]
 root_node = NodePath("../..")
