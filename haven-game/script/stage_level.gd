@@ -55,6 +55,14 @@ func _ready():
 	button_3.visible = false
 	white_style.bg_color=Color.WHITE
 	blue_style.bg_color=Color.SKY_BLUE
+	white_style.corner_radius_bottom_left=10
+	white_style.corner_radius_bottom_right=10
+	white_style.corner_radius_top_left=10
+	white_style.corner_radius_top_right=10
+	blue_style.corner_radius_bottom_left=10
+	blue_style.corner_radius_bottom_right=10
+	blue_style.corner_radius_top_left=10
+	blue_style.corner_radius_top_right=10
 	
 	Global.arrange.connect(_on_arrange)
 	music.play()
