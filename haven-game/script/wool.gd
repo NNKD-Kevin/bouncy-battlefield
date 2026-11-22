@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 		var collider=collision.get_collider()
 		if collider is CharacterBody2D:
 			if collider is Animal and collider.side!=side:
-				collider.hp-=10
+				collider.hp-=15
 				collider.flash_animation.play('flash')
 				queue_free()
 			else:

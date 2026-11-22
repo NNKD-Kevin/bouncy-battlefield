@@ -46,7 +46,7 @@ func choose():
 			option.visible=true
 	choices=[]
 	while len(cache)<3:
-		var gacha=randi_range(4,len(AnimalData.ENEMY_TYPES))
+		var gacha=randi_range(1,len(AnimalData.ENEMY_TYPES))
 		if gacha not in cache:
 			cache.append(gacha)
 	for i in range(len(options)):
