@@ -16,6 +16,10 @@ const ANIMAL=preload("res://scenes/animal.tscn")
 @onready var buttons=[button,button_2,button_3]
 @onready var animal_panel: Panel = $Animal_Panel
 
+
+var defeat = preload("res://scenes/Defeat.tscn")
+var victory = preload("res://scenes/win.tscn")
+
 var white_style := StyleBoxFlat.new()
 var blue_style := StyleBoxFlat.new()
 var current_button=button
@@ -128,12 +132,22 @@ func _process(_delta: float) -> void:
 		Global.combat = false
 		Global.sandstorm_on=false
 		sandstorm_timer.stop()
-		get_tree().change_scene_to_file("res://scenes/Defeat.tscn")
+		button.visible = false
+		button_2.visible = false
+		button_3.visible = false
+		var scene = defeat.instantiate()
+		get_tree().root.add_child(scene)
+		music.stop()
 		clear()
 		Engine.time_scale = 1.0
 	elif enemies_left == 0:
 		if Global.level==10:
-			get_tree().change_scene_to_file("res://scenes/win.tscn")
+			button.visible = false
+			button_2.visible = false
+			button_3.visible = false
+			var scene = victory.instantiate()
+			get_tree().root.add_child(scene)
+			music.stop()
 		Global.combat = false
 		Global.sandstorm_on=false
 		sandstorm_timer.stop()

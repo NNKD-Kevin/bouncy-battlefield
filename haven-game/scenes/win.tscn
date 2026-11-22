@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b4dep4gjxq2vy"]
 
 [ext_resource type="Script" uid="uid://ykt8wy0gbojt" path="res://script/win.gd" id="1_iiocm"]
-[ext_resource type="Texture2D" uid="uid://fyt50b1pjpo6" path="res://assets/MMBG.png" id="2_yxbqr"]
 [ext_resource type="FontFile" uid="uid://cqwa2xlvhatxv" path="res://assets/Pixelout Personal Use Only.ttf" id="3_tylv2"]
 [ext_resource type="Texture2D" uid="uid://ddhsm8tulf0rl" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Tiny Chick/TinyChick.png" id="4_531e2"]
 [ext_resource type="Texture2D" uid="uid://c61x748ofga2c" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Clucking Chicken/CluckingChicken.png" id="5_d70ak"]
@@ -10,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://k0ueg1beyyye" path="res://assets/Basic Asset Pack/Basic Asset Pack/Basic Animal Animations/Slow Turtle/SlowTurtle.png" id="8_doh3d"]
 [ext_resource type="AudioStream" uid="uid://cljgrf7oye82t" path="res://assets/Sounds/vic.wav" id="9_d70ak"]
 [ext_resource type="AudioStream" uid="uid://cmoq3jrt4tt3g" path="res://assets/Sounds/ending.wav" id="10_woh6y"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejki1"]
-texture = ExtResource("2_yxbqr")
 
 [sub_resource type="Animation" id="Animation_5vxan"]
 length = 0.001
@@ -373,23 +369,18 @@ animations = [{
 }]
 
 [node name="Win" type="Node2D" unique_id=937651795]
+z_index = 10
 script = ExtResource("1_iiocm")
 
-[node name="Background" type="Panel" parent="." unique_id=1403994656]
-offset_right = 1152.0
-offset_bottom = 648.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_ejki1")
-
-[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1413281417]
-layout_mode = 0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1413281417]
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 0)
 
-[node name="darken" type="AnimationPlayer" parent="Background/ColorRect" unique_id=1115112087]
+[node name="darken" type="AnimationPlayer" parent="ColorRect" unique_id=1115112087]
 libraries/ = SubResource("AnimationLibrary_531e2")
 
-[node name="timer_d" type="Timer" parent="Background/ColorRect" unique_id=1211715604]
+[node name="timer_d" type="Timer" parent="ColorRect" unique_id=1211715604]
 wait_time = 5.0
 one_shot = true
 
@@ -433,6 +424,7 @@ one_shot = true
 [node name="Replay" type="Node" parent="." unique_id=269303208]
 
 [node name="win" type="Label" parent="Replay" unique_id=1567488457]
+z_index = 11
 offset_left = 53.0
 offset_top = 44.0
 offset_right = 1104.0
@@ -447,6 +439,7 @@ text = "You win
 libraries/ = SubResource("AnimationLibrary_1sfkf")
 
 [node name="replay" type="Button" parent="Replay" unique_id=114362023]
+z_index = 11
 offset_left = 287.0
 offset_top = 307.0
 offset_right = 832.0
@@ -466,6 +459,7 @@ one_shot = true
 [node name="animal" type="Node" parent="Replay" unique_id=688479679]
 
 [node name="Animal" type="HBoxContainer" parent="Replay/animal" unique_id=659524777]
+z_index = 11
 offset_left = 10.0
 offset_top = -10.0
 offset_right = 1163.0
@@ -514,7 +508,7 @@ stream = ExtResource("9_d70ak")
 [node name="ending" type="AudioStreamPlayer2D" parent="." unique_id=1735860618]
 stream = ExtResource("10_woh6y")
 
-[connection signal="timeout" from="Background/ColorRect/timer_d" to="." method="_on_timer_d_timeout"]
+[connection signal="timeout" from="ColorRect/timer_d" to="." method="_on_timer_d_timeout"]
 [connection signal="timeout" from="raid/timer_r" to="." method="_on_timer_r_timeout"]
 [connection signal="timeout" from="horde/timer_h" to="." method="_on_timer_h_timeout"]
 [connection signal="pressed" from="Replay/replay" to="." method="_on_replay_pressed"]

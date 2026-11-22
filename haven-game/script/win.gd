@@ -1,13 +1,13 @@
 extends Node2D
-@onready var darken: AnimationPlayer = $Background/ColorRect/darken
 @onready var raid: Label = $raid
+@onready var darken: AnimationPlayer = $ColorRect/darken
 @onready var raid_a: AnimationPlayer = $raid/raid
 @onready var horde: Label = $horde
 @onready var horde_a: AnimationPlayer = $horde/horde
 @onready var win: Label = $Replay/win
 @onready var win_a: AnimationPlayer = $Replay/win/win
 @onready var replay_b: Button = $Replay/replay
-@onready var timer_d: Timer = $Background/ColorRect/timer_d
+@onready var timer_d: Timer = $ColorRect/timer_d
 @onready var timer_r: Timer = $raid/timer_r
 @onready var timer_h: Timer = $horde/timer_h
 @onready var timer_w: Timer = $Replay/timer_w
@@ -61,4 +61,5 @@ func _on_timer_w_timeout() -> void:
 
 func _on_replay_pressed() -> void:
 	Global.reset_run()
+	queue_free()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

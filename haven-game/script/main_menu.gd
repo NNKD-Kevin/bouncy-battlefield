@@ -8,7 +8,6 @@ func _ready() -> void:
 	main_buttons.visible = true
 	options.visible = false
 
-
 func _process(delta: float) -> void:
 	pass
 

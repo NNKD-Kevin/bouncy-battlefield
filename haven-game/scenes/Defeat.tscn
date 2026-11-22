@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://bcoxdudmy0k13"]
 
 [ext_resource type="Script" uid="uid://c7l2rlc4gjxm" path="res://script/defeat.gd" id="1_ortuk"]
-[ext_resource type="Texture2D" uid="uid://fyt50b1pjpo6" path="res://assets/MMBG.png" id="2_ije3m"]
 [ext_resource type="FontFile" uid="uid://cqwa2xlvhatxv" path="res://assets/Pixelout Personal Use Only.ttf" id="3_043hq"]
 [ext_resource type="AudioStream" uid="uid://jgargahnfp5v" path="res://assets/Sounds/slap.wav" id="4_ije3m"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jphpq"]
-texture = ExtResource("2_ije3m")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejki1"]
 bg_color = Color(1, 1, 1, 1)
@@ -43,7 +39,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +59,7 @@ length = 3.0000000000000004
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,20 +77,14 @@ _data = {
 }
 
 [node name="Defeat" type="Node2D" unique_id=388521652]
+z_index = 10
 script = ExtResource("1_ortuk")
 
-[node name="Panel" type="Panel" parent="." unique_id=184594295]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1152.0
-offset_bottom = 650.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_jphpq")
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Panel" unique_id=1505759631]
-layout_mode = 0
-offset_right = 1157.0
-offset_bottom = 653.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1505759631]
+offset_left = -9.0
+offset_top = -8.0
+offset_right = 1158.0
+offset_bottom = 654.0
 color = Color(0, 0, 0, 0)
 
 [node name="Button" type="Button" parent="." unique_id=620422427]
