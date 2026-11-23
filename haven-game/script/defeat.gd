@@ -35,4 +35,5 @@ func _on_timer_3_timeout() -> void:
 	
 func _on_button_pressed() -> void:
 	Global.reset_run()
+	queue_free()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
