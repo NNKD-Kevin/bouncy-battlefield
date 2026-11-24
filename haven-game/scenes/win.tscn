@@ -368,6 +368,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqkd1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eeo6d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jphpq"]
+
 [node name="Win" type="Node2D" unique_id=937651795]
 z_index = 10
 script = ExtResource("1_iiocm")
@@ -508,8 +514,25 @@ stream = ExtResource("9_d70ak")
 [node name="ending" type="AudioStreamPlayer2D" parent="." unique_id=1735860618]
 stream = ExtResource("10_woh6y")
 
+[node name="skip" type="Button" parent="." unique_id=1811993293]
+z_index = 5
+offset_left = 896.0
+offset_top = 602.0
+offset_right = 1149.0
+offset_bottom = 642.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.22670749, 0.22670752, 0.22670743, 1)
+theme_override_colors/font_hover_color = Color(0.3842287, 0.38422906, 0.38422894, 1)
+theme_override_fonts/font = ExtResource("3_tylv2")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iqkd1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eeo6d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jphpq")
+text = "Skip Cutscene"
+
 [connection signal="timeout" from="ColorRect/timer_d" to="." method="_on_timer_d_timeout"]
 [connection signal="timeout" from="raid/timer_r" to="." method="_on_timer_r_timeout"]
 [connection signal="timeout" from="horde/timer_h" to="." method="_on_timer_h_timeout"]
 [connection signal="pressed" from="Replay/replay" to="." method="_on_replay_pressed"]
 [connection signal="timeout" from="Replay/timer_w" to="." method="_on_timer_w_timeout"]
+[connection signal="pressed" from="skip" to="." method="_on_skip_pressed"]

@@ -18,6 +18,8 @@ extends Node2D
 @onready var turtle: AnimatedSprite2D = $Replay/animal/Animal/turtle
 @onready var winner: AudioStreamPlayer2D = $winner
 @onready var ending: AudioStreamPlayer2D = $ending
+@onready var skip: Button = $skip
+@onready var color_rect: ColorRect = $ColorRect
 
 func _ready() -> void:
 	raid.visible = false
@@ -29,6 +31,7 @@ func _ready() -> void:
 	turtle.visible = false
 	crab.visible = false
 	wolf.visible = false
+	skip.visible = true
 	raid.add_theme_color_override("font_color",Color.BLACK)
 	horde.add_theme_color_override("font_color",Color.BLACK)
 	win.add_theme_color_override("font_color",Color.BLACK)
@@ -63,3 +66,27 @@ func _on_replay_pressed() -> void:
 	Global.reset_run()
 	queue_free()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_skip_pressed() -> void:
+	timer_d.stop()
+	timer_h.stop()
+	timer_r.stop()
+	timer_w.stop()
+	raid.visible = true
+	horde.visible = true
+	win.visible = true
+	replay_b.visible = true
+	chick.visible = true
+	chicken.visible = true
+	turtle.visible = true
+	crab.visible = true
+	wolf.visible = true
+	ending.stop()
+	winner.stop()
+	raid.add_theme_color_override("font_color",Color.BLACK)
+	horde.add_theme_color_override("font_color",Color.BLACK)
+	win.add_theme_color_override("font_color",Color.WHITE)
+	darken.stop()
+	$ColorRect.color = Color("000000")
+	skip.visible = false

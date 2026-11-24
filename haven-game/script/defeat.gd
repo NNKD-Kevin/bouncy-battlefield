@@ -7,6 +7,8 @@ extends Node2D
 @onready var timer_retry: Timer = $Timer3
 @onready var button: Button = $Button
 @onready var slap: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var skip: Button = $Skip
+@onready var color_rect: ColorRect = $ColorRect
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,8 +18,10 @@ func _ready() -> void:
 	button.visible = false
 	timer_die.start()
 	animation_player.play("darken")
-	
-	
+	skip.visible = true
+
+
+
 func _on_timer_timeout() -> void:
 	slap.play()
 	defeated.visible = true
@@ -37,3 +41,18 @@ func _on_button_pressed() -> void:
 	Global.reset_run()
 	queue_free()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+
+func _on_skip_pressed() -> void:
+	timer_die.stop()
+	timer_retry.stop()
+	timer_bounce.stop()
+	button.visible = true
+	bounce.visible = true
+	defeated.visible = true
+	animation_player.stop()
+	$ColorRect.color = Color("000000e6")
+	skip.visible = false
+	
+	

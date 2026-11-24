@@ -76,6 +76,19 @@ _data = {
 &"darken": SubResource("Animation_btxua")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqkd1"]
+bg_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jphpq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeo6d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [node name="Defeat" type="Node2D" unique_id=388521652]
 z_index = 10
 script = ExtResource("1_ortuk")
@@ -137,7 +150,22 @@ one_shot = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=465697835]
 stream = ExtResource("4_ije3m")
 
+[node name="Skip" type="Button" parent="." unique_id=510700983]
+offset_left = 915.0
+offset_top = 606.0
+offset_right = 1153.0
+offset_bottom = 664.0
+theme_override_colors/font_pressed_color = Color(0.25323758, 0.25323758, 0.25323758, 1)
+theme_override_colors/font_hover_color = Color(0.6147444, 0.6147445, 0.61474556, 1)
+theme_override_fonts/font = ExtResource("3_043hq")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_iqkd1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jphpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eeo6d")
+text = "Skip Cutscene"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
+[connection signal="pressed" from="Skip" to="." method="_on_skip_pressed"]
